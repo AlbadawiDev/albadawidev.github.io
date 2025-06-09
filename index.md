@@ -1,3 +1,25 @@
+---
+title: Portfolio de Daniel Albadawi
+---
+
+# ¡Hola! Soy Daniel Samir Al Badawi Aazar 👋
+
+Estudiante de 5.º semestre de **Informática** en la Universidad de Oriente (UDO).  
+Apasionado por **Python**, **Git/GitHub** y el aprendizaje continuo.
+
+## Sobre mí
+- Me motiva el **autoaprendizaje** y la **resolución de problemas**.  
+- Disfruto colaborando en proyectos académicos y personales.  
+- Actualmente profundizo en Python y Git/GitHub vía Coursera.
+
+## Certificaciones
+- 📜 **Python for Everybody** (Coursera)  
+- 📜 **Introduction to Git and GitHub** (Coursera)
+
+## Enlaces
+- **LinkedIn**: https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/  
+- **GitHub**: https://github.com/AlbadawiDev  
+
 ## Proyectos
 
 - **Calculadora en Python**  
