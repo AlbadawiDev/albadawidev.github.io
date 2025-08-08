@@ -10,42 +10,42 @@ Apasionado por **Python**, **Git/GitHub** y el aprendizaje continuo.
 ## Sobre mí
 - Me motiva el **autoaprendizaje** y la **resolución de problemas**.  
 - Disfruto colaborando en proyectos académicos y personales.  
-- Actualmente profundizo en Python y Git/GitHub vía Coursera.
+- Actualmente profundizo en **Python** y **Git/GitHub** (Coursera).
 
 ## Certificaciones
-- 📜 **Python for Everybody** (Coursera)  
-- 📜 **Introduction to Git and GitHub** (Coursera)
+- 📜 *Python for Everybody* (Coursera)  
+- 📜 *Introduction to Git and GitHub* (Coursera)
 
 ## Enlaces
-- **LinkedIn**: https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/  
-- **GitHub**: https://github.com/AlbadawiDev  
+- **LinkedIn:** <https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/>  
+- **GitHub:** <https://github.com/AlbadawiDev>
+
+---
 
 ## Proyectos
 
-- **Calculadora en Python**  
-  Repositorio: [mi-calculadora-python](https://github.com/AlbadawiDev/mi-calculadora-python)  
-  Breve descripción:  
-  Un script en Python que pide dos números al usuario y muestra la suma, resta, multiplicación y división (con manejo de “división por cero”).  
-  **Ver README**:  
-  [Ver detalles en GitHub](https://github.com/AlbadawiDev/mi-calculadora-python/blob/main/README.md)
+### Calculadora en Python
+- **Repositorio:** <https://github.com/AlbadawiDev/mi-calculadora-python>  
+- **Descripción:** Script que pide dos números y muestra **suma, resta, multiplicación y división** (con manejo de división por cero).  
+- **README:** <https://github.com/AlbadawiDev/mi-calculadora-python/blob/main/README.md>
 
-- **Práctica Edad**  
-  Repositorio: [practica-edad](https://github.com/AlbadawiDev/practica-edad)  
-  Breve descripción:  
-  Un script que pide la edad a un usuario y determina si es mayor de edad o no.  
-  **Ver README**:  
-  [Ver detalles en GitHub](https://github.com/AlbadawiDev/practica-edad/blob/main/README.md)
+### Práctica: Edad
+- **Repositorio:** <https://github.com/AlbadawiDev/practica-edad>  
+- **Descripción:** Pide la edad y determina si el usuario es **mayor de edad**.  
+- **README:** <https://github.com/AlbadawiDev/practica-edad/blob/main/README.md>
 
-- **Práctica Paridad**  
-  Repositorio: [practica-paridad](https://github.com/AlbadawiDev/practica-paridad)  
-  Breve descripción:  
-  Un programa que pide un número entero y comprueba si es par o impar.  
-  **Ver README**:  
-  [Ver detalles en GitHub](https://github.com/AlbadawiDev/practica-paridad/blob/main/README.md)
+### Práctica: Paridad
+- **Repositorio:** <https://github.com/AlbadawiDev/practica-paridad>  
+- **Descripción:** Pide un entero y comprueba si es **par o impar**.  
+- **README:** <https://github.com/AlbadawiDev/practica-paridad/blob/main/README.md>
 
-- **Práctica Contador**  
-  Repositorio: [practica-contador](https://github.com/AlbadawiDev/practica-contador)  
-  Breve descripción:  
-  Un script que imprime todos los números desde 1 hasta un límite indicado por el usuario, usando un bucle `for`.  
-  **Ver README**:  
-  [Ver detalles en GitHub](https://github.com/AlbadawiDev/practica-contador/blob/main/README.md)
+### Práctica: Contador
+- **Repositorio:** <https://github.com/AlbadawiDev/practica-contador>  
+- **Descripción:** Imprime los números desde **1** hasta un límite indicado por el usuario (bucle `for`).  
+- **README:** <https://github.com/AlbadawiDev/practica-contador/blob/main/README.md>
+
+---
+
+## Contacto
+Si quieres hablar de proyectos o prácticas:
+- **Email:** albadawi.dev@gmail.com
