@@ -4,15 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Daniel Samir Al Badawi — Portafolio</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Portafolio de Daniel Samir Al Badawi: QA manual, arreglos WordPress y automatizaciones no-code (Zapier/Make). Remoto LATAM.">
+  <link rel="canonical" href="https://albadawidev.github.io/" />
+
+  <!-- Social -->
+  <meta property="og:title" content="Daniel Samir Al Badawi — Portafolio">
+  <meta property="og:description" content="QA manual, arreglos WordPress y automatizaciones no-code (Zapier/Make).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://albadawidev.github.io/">
+  <meta property="og:image" content="og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon (sube favicon.png y og.jpg al repo raíz) -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
   <style>
-    :root { --fg:#111; --muted:#555; --bg:#fff; --card:#f7f7f7; --link:#2563eb; }
-    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.5}
+    :root{--fg:#111;--muted:#555;--bg:#fff;--card:#f7f7f7;--link:#2563eb}
+    *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.5}
     .wrap{max-width:900px;margin:0 auto;padding:24px}
     header{padding:12px 0 8px;border-bottom:1px solid #eee}
     h1{margin:0 0 6px;font-size:28px}
     .tag{color:var(--muted);margin:0 0 12px}
     .btns a{display:inline-block;margin-right:8px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:var(--fg)}
     .btns a.primary{border-color:var(--link);color:var(--link)}
+    .btns a:hover{border-color:var(--fg)}
     section{margin:28px 0}
     h2{font-size:20px;margin:0 0 12px}
     .grid{display:grid;gap:12px}
@@ -20,8 +37,25 @@
     .card{background:var(--card);padding:14px;border-radius:12px}
     ul{margin:8px 0 0 18px}
     a{color:var(--link)}
+    .prices .card strong{font-size:18px}
+    .prices .price{font-weight:700}
     footer{margin:32px 0 12px;color:var(--muted);font-size:14px}
   </style>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Daniel Samir Al Badawi Aazar",
+    "jobTitle":"QA / WordPress / No-Code",
+    "url":"https://albadawidev.github.io/",
+    "sameAs":[
+      "https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/",
+      "https://github.com/AlbadawiDev"
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
@@ -62,6 +96,56 @@
       </div>
     </section>
 
+    <section class="prices">
+      <h2>Servicios y precios</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <strong>WordPress Fix</strong> — <span class="price">$79 / $179 / $349</span>
+          <ul>
+            <li>Arreglo de formularios y/o velocidad</li>
+            <li>Reporte Lighthouse antes/después</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>QA 24h</strong> — <span class="price">$99 / $199 / $349</span>
+          <ul>
+            <li>Checklist + evidencias y prioridades</li>
+            <li>Video corto con hallazgos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Automatización no-code</strong> — <span class="price">$199 / $399 / $599</span>
+          <ul>
+            <li>Zapier/Make ↔ Sheets/CRM/Email</li>
+            <li>Diagrama + documentación breve</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Antes / Después (velocidad)</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <strong>Antes</strong>
+          <ul>
+            <li>LCP: 5.2s</li>
+            <li>Peso: 3.1 MB</li>
+            <li>Peticiones: 92</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Después</strong>
+          <ul>
+            <li>LCP: 1.8s</li>
+            <li>Peso: 1.2 MB</li>
+            <li>Peticiones: 48</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tag">*Reemplaza por métricas reales de PageSpeed/Lighthouse cuando tengas un caso.</p>
+    </section>
+
     <section>
       <h2>Proyectos destacados</h2>
       <div class="grid">
@@ -85,9 +169,11 @@
       <ul>
         <li><a href="https://github.com/AlbadawiDev/pro-path-2025" target="_blank" rel="noopener">pro-path-2025</a></li>
         <li><a href="https://github.com/AlbadawiDev/mi-calculadora-python" target="_blank" rel="noopener">mi-calculadora-python</a></li>
-        <li><a href="https://github.com/AlbadawiDev/practica-edad" target="_blank" rel="noopener">practica-edad</a>,
-            <a href="https://github.com/AlbadawiDev/practica-paridad" target="_blank" rel="noopener">paridad</a>,
-            <a href="https://github.com/AlbadawiDev/practica-contador" target="_blank" rel="noopener">contador</a></li>
+        <li>
+          <a href="https://github.com/AlbadawiDev/practica-edad" target="_blank" rel="noopener">practica-edad</a>,
+          <a href="https://github.com/AlbadawiDev/practica-paridad" target="_blank" rel="noopener">paridad</a>,
+          <a href="https://github.com/AlbadawiDev/practica-contador" target="_blank" rel="noopener">contador</a>
+        </li>
       </ul>
     </section>
 
