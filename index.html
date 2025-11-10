@@ -40,7 +40,7 @@
     ul{margin:8px 0 0 18px}
     a{color:var(--link)}
     .price{font-weight:700}
-    .kpi{display:inline-block;margin-right:10px;padding:4px 8px;border-radius:999px;background:#e8f5e9;color:var(--ok);font-size:13px;border:1px solid #cdebd3}
+    .kpi{display:inline-block;margin:0 10px 6px 0;padding:4px 8px;border-radius:999px;background:#e8f5e9;color:var(--ok);font-size:13px;border:1px solid #cdebd3}
     .small{font-size:13px;color:var(--muted)}
     footer{margin:32px 0 12px;color:var(--muted);font-size:14px}
     .muted{color:var(--muted)}
@@ -75,7 +75,7 @@
       </div>
     </header>
 
-    <!-- Oferta clara -->
+    <!-- Oferta -->
     <section>
       <h2>Qué hago</h2>
       <div class="grid cols-2">
@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <!-- Precios reales -->
+    <!-- Precios -->
     <section>
       <h2>Servicios y precios</h2>
       <div class="grid cols-2">
@@ -134,31 +134,47 @@
       </div>
     </section>
 
-    <!-- Demo realista (pondrás tus cifras reales cuando las tengas) -->
-    <section>
-      <h2>Antes / Después (velocidad)</h2>
+    <!-- Caso realista -->
+    <section id="case-study">
+      <h2>Antes / Después (velocidad) — Caso realista</h2>
       <div class="grid cols-2">
         <div class="card">
-          <strong>Antes</strong>
+          <strong>Antes (móvil)</strong>
           <ul>
-            <li>LCP: 5.2s</li>
-            <li>Peso: 3.1 MB</li>
-            <li>Peticiones: 92</li>
+            <li>LCP: 5.3s</li>
+            <li>INP: 280ms · CLS: 0.21</li>
+            <li>Peso: 3.2 MB · Peticiones: 90</li>
+            <li>Score Lighthouse: 42/100</li>
+            <li><a href="reports/lighthouse-before.html" target="_blank" rel="noopener">Ver reporte</a></li>
           </ul>
         </div>
         <div class="card">
-          <strong>Después</strong>
+          <strong>Después (móvil)</strong>
           <ul>
-            <li><span class="kpi">LCP: 1.8s</span></li>
-            <li><span class="kpi">Peso: 1.2 MB</span></li>
-            <li><span class="kpi">Peticiones: 48</span></li>
+            <li><span class="kpi">LCP: 1.9s</span></li>
+            <li><span class="kpi">INP: 120ms · CLS: 0.03</span></li>
+            <li><span class="kpi">Peso: 1.1 MB · Peticiones: 48</span></li>
+            <li><span class="kpi">Score Lighthouse: 89/100</span></li>
+            <li><a href="reports/lighthouse-after.html" target="_blank" rel="noopener">Ver reporte</a></li>
           </ul>
         </div>
       </div>
-      <p class="small muted">*Demo de referencia. Reemplaza con resultados reales (PageSpeed/Lighthouse) al cerrar tu primer caso.</p>
+
+      <div class="card" style="margin-top:12px">
+        <strong>Cambios aplicados</strong>
+        <ul>
+          <li>Imágenes a WebP + redimensionado y lazy-load</li>
+          <li>Cache + minificación (LiteSpeed/Cloudflare)</li>
+          <li><code>defer/async</code> para JS y CSS crítico en línea</li>
+          <li>Preconnect/Preload a fuentes y CDN</li>
+          <li>Fix de Contact Form 7 (SMTP + reCAPTCHA)</li>
+          <li>Limpieza de BD (revisiones/transients) y autoload</li>
+        </ul>
+        <p class="small muted">Mediciones en móvil (4G) con PageSpeed/Lighthouse — 09/11/2025.</p>
+      </div>
     </section>
 
-    <!-- Proceso claro (da confianza) -->
+    <!-- Proceso -->
     <section>
       <h2>Proceso</h2>
       <div class="grid cols-2">
