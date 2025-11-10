@@ -17,19 +17,21 @@
   <meta property="og:image" content="og.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon (sube favicon.png y og.jpg al repo raíz) -->
+  <!-- Favicon (opcional: sube favicon.png y og.jpg al repo raíz) -->
   <link rel="icon" href="favicon.png" type="image/png">
 
   <style>
-    :root{--fg:#111;--muted:#555;--bg:#fff;--card:#f7f7f7;--link:#2563eb}
-    *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.5}
+    :root{--fg:#111;--muted:#555;--bg:#fff;--card:#f7f7f7;--link:#2563eb;--ok:#0a7f2e}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.5}
     .wrap{max-width:900px;margin:0 auto;padding:24px}
     header{padding:12px 0 8px;border-bottom:1px solid #eee}
     h1{margin:0 0 6px;font-size:28px}
     .tag{color:var(--muted);margin:0 0 12px}
-    .btns a{display:inline-block;margin-right:8px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:var(--fg)}
-    .btns a.primary{border-color:var(--link);color:var(--link)}
-    .btns a:hover{border-color:var(--fg)}
+    .btns a{display:inline-block;margin:6px 8px 0 0;padding:8px 12px;border:1px solid #ddd;border-radius:10px;text-decoration:none;color:var(--fg)}
+    .btns a.primary{border-color:var(--link);color:#fff;background:var(--link)}
+    .btns a.whatsapp{border-color:#25d366;color:#0a4d2e;background:#dffff0}
+    .btns a:hover{filter:brightness(0.95)}
     section{margin:28px 0}
     h2{font-size:20px;margin:0 0 12px}
     .grid{display:grid;gap:12px}
@@ -37,9 +39,11 @@
     .card{background:var(--card);padding:14px;border-radius:12px}
     ul{margin:8px 0 0 18px}
     a{color:var(--link)}
-    .prices .card strong{font-size:18px}
-    .prices .price{font-weight:700}
+    .price{font-weight:700}
+    .kpi{display:inline-block;margin-right:10px;padding:4px 8px;border-radius:999px;background:#e8f5e9;color:var(--ok);font-size:13px;border:1px solid #cdebd3}
+    .small{font-size:13px;color:var(--muted)}
     footer{margin:32px 0 12px;color:var(--muted);font-size:14px}
+    .muted{color:var(--muted)}
   </style>
 
   <!-- Schema.org -->
@@ -52,7 +56,8 @@
     "url":"https://albadawidev.github.io/",
     "sameAs":[
       "https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/",
-      "https://github.com/AlbadawiDev"
+      "https://github.com/AlbadawiDev",
+      "https://wa.me/584248360302"
     ]
   }
   </script>
@@ -63,17 +68,19 @@
       <h1>Daniel Samir Al Badawi Aazar</h1>
       <p class="tag">QA manual · Arreglos WordPress · Automatizaciones no-code (Zapier/Make) · Remoto LATAM</p>
       <div class="btns">
-        <a class="primary" href="mailto:albadawi.dev@gmail.com">Contactar</a>
+        <a class="primary" href="mailto:albadawi.dev@gmail.com">Contactar por Email</a>
+        <a class="whatsapp" href="https://wa.me/584248360302?text=Hola%20Daniel%2C%20vi%20tu%20portafolio%20y%20necesito%20ayuda%20con%20mi%20sitio." target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/AlbadawiDev" target="_blank" rel="noopener">GitHub</a>
       </div>
     </header>
 
+    <!-- Oferta clara -->
     <section>
       <h2>Qué hago</h2>
       <div class="grid cols-2">
         <div class="card">
-          <strong>QA express 24h</strong>
+          <strong>QA express 24–48h</strong>
           <ul>
             <li>Pruebas funcionales con checklist</li>
             <li>Reporte claro con evidencias</li>
@@ -96,7 +103,8 @@
       </div>
     </section>
 
-    <section class="prices">
+    <!-- Precios reales -->
+    <section>
       <h2>Servicios y precios</h2>
       <div class="grid cols-2">
         <div class="card">
@@ -105,6 +113,7 @@
             <li>Arreglo de formularios y/o velocidad</li>
             <li>Reporte Lighthouse antes/después</li>
           </ul>
+          <p class="small muted">Tiempo típico: 2–4 días · Acceso temporal seguro · Cambios reversibles</p>
         </div>
         <div class="card">
           <strong>QA 24h</strong> — <span class="price">$99 / $199 / $349</span>
@@ -112,6 +121,7 @@
             <li>Checklist + evidencias y prioridades</li>
             <li>Video corto con hallazgos</li>
           </ul>
+          <p class="small muted">Incluye reproducibilidad de bugs (pasos) y severidad</p>
         </div>
         <div class="card">
           <strong>Automatización no-code</strong> — <span class="price">$199 / $399 / $599</span>
@@ -119,10 +129,12 @@
             <li>Zapier/Make ↔ Sheets/CRM/Email</li>
             <li>Diagrama + documentación breve</li>
           </ul>
+          <p class="small muted">Entrega con logs básicos y manejo de errores</p>
         </div>
       </div>
     </section>
 
+    <!-- Demo realista (pondrás tus cifras reales cuando las tengas) -->
     <section>
       <h2>Antes / Después (velocidad)</h2>
       <div class="grid cols-2">
@@ -137,15 +149,39 @@
         <div class="card">
           <strong>Después</strong>
           <ul>
-            <li>LCP: 1.8s</li>
-            <li>Peso: 1.2 MB</li>
-            <li>Peticiones: 48</li>
+            <li><span class="kpi">LCP: 1.8s</span></li>
+            <li><span class="kpi">Peso: 1.2 MB</span></li>
+            <li><span class="kpi">Peticiones: 48</span></li>
           </ul>
         </div>
       </div>
-      <p class="tag">*Reemplaza por métricas reales de PageSpeed/Lighthouse cuando tengas un caso.</p>
+      <p class="small muted">*Demo de referencia. Reemplaza con resultados reales (PageSpeed/Lighthouse) al cerrar tu primer caso.</p>
     </section>
 
+    <!-- Proceso claro (da confianza) -->
+    <section>
+      <h2>Proceso</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <strong>1) Diagnóstico</strong>
+          <ul><li>Mini-auditoría gratis (Lighthouse/flujo)</li></ul>
+        </div>
+        <div class="card">
+          <strong>2) Propuesta</strong>
+          <ul><li>Alcance y precio fijo por entregable</li></ul>
+        </div>
+        <div class="card">
+          <strong>3) Implementación</strong>
+          <ul><li>Backup / staging · cambios reversibles</li></ul>
+        </div>
+        <div class="card">
+          <strong>4) Entrega</strong>
+          <ul><li>Métricas antes/después + breve documentación</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
     <section>
       <h2>Proyectos destacados</h2>
       <div class="grid">
@@ -164,6 +200,7 @@
       </div>
     </section>
 
+    <!-- Repos -->
     <section>
       <h2>Más repos</h2>
       <ul>
@@ -177,6 +214,7 @@
       </ul>
     </section>
 
+    <!-- Certificaciones -->
     <section>
       <h2>Certificaciones</h2>
       <ul>
