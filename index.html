@@ -456,7 +456,7 @@
             <span class="tag">Mobile</span>
           </div>
           <div class="project-links">
-            <a class="btn" href="https://github.com/AlbadawiDev/SharingApp-Contacts-Borrowed" target="_blank" rel="noreferrer">View on GitHub</a>
+            <a class="btn" href="https://github.com/AlbadawiDev" target="_blank" rel="noreferrer">View on GitHub</a>
           </div>
         </article>
 
@@ -554,7 +554,7 @@
           <h3>Available for remote opportunities</h3>
           <p class="muted">Open to junior software roles, QA work, automation support and WordPress related freelance projects.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="mailto:albadawi.dev@gmail.com">Email me</a>
+            <button class="btn primary" id="copy-email-btn" type="button">Copy email</button>
             <a class="btn" href="https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a class="btn" href="https://github.com/AlbadawiDev" target="_blank" rel="noreferrer">GitHub</a>
           </div>
@@ -571,6 +571,25 @@
       </div>
     </section>
   </main>
+
+  <script>
+  const copyEmailBtn = document.getElementById('copy-email-btn');
+  if (copyEmailBtn) {
+    const email = 'albadawi.dev@gmail.com';
+    copyEmailBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        const originalText = copyEmailBtn.textContent;
+        copyEmailBtn.textContent = 'Email copied';
+        setTimeout(() => {
+          copyEmailBtn.textContent = originalText;
+        }, 1800);
+      } catch (error) {
+        window.prompt('Copy this email:', email);
+      }
+    });
+  }
+</script>
 
   <footer>
     <div class="wrap">© 2026 Daniel Al Badawi. Built to present projects, experience and technical growth.</div>
