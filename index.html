@@ -1,335 +1,579 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Daniel Al Badawi - Social Media, WordPress & No-Code</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Portfolio of Daniel Al Badawi. Social Media Manager, WordPress fixes and no-code automations for small businesses. Remote LATAM.">
-  <link rel="canonical" href="https://albadawidev.github.io/" />
-
-  <!-- Social -->
-  <meta property="og:title" content="Daniel Al Badawi - Social Media, WordPress & No-Code">
-  <meta property="og:description" content="Social Media, basic QA, WordPress fixes and no-code automations for busy business owners.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://albadawidev.github.io/">
-  <meta property="og:image" content="og.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniel Al Badawi | Software Developer Portfolio</title>
+  <meta name="description" content="Software Developer in Training. Python, Java, SQL, WordPress, QA and Automation. GitHub projects, certificates and freelance work." />
   <style>
-    :root{
-      --fg:#111;
-      --muted:#555;
-      --bg:#fff;
-      --card:#f7f7f7;
-      --link:#2563eb;
-      --ok:#0a7f2e;
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2b;
+      --panel-2: #182338;
+      --text: #e8eefc;
+      --muted: #a9b7d6;
+      --accent: #59a5ff;
+      --accent-2: #7ee787;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 16px 50px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1120px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      color:var(--fg);
-      background:var(--bg);
-      line-height:1.5;
-    }
-    .wrap{max-width:900px;margin:0 auto;padding:24px}
-    header{
-      padding:12px 0 8px;
-      border-bottom:1px solid #eee;
-    }
-    h1{margin:0 0 6px;font-size:28px}
-    .tag{color:var(--muted);margin:0 0 12px}
-    .btns a{
-      display:inline-block;
-      margin:6px 8px 0 0;
-      padding:8px 12px;
-      border:1px solid #ddd;
-      border-radius:10px;
-      text-decoration:none;
-      color:var(--fg);
-      font-size:14px;
-    }
-    .btns a.primary{
-      border-color:var(--link);
-      color:#fff;
-      background:var(--link);
-    }
-    .btns a.whatsapp{
-      border-color:#25d366;
-      color:#0a4d2e;
-      background:#dffff0;
-    }
-    .btns a:hover{filter:brightness(0.95)}
-    section{margin:28px 0}
-    h2{font-size:20px;margin:0 0 12px}
-    .grid{display:grid;gap:12px}
-    .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{
-      background:var(--card);
-      padding:14px;
-      border-radius:12px;
-      font-size:14px;
-    }
-    ul{margin:8px 0 0 18px;padding:0}
-    a{color:var(--link)}
-    .price{font-weight:700}
-    .kpi{
-      display:inline-block;
-      margin:0 10px 6px 0;
-      padding:4px 8px;
-      border-radius:999px;
-      background:#e8f5e9;
-      color:var(--ok);
-      font-size:13px;
-      border:1px solid #cdebd3;
-    }
-    .small{font-size:13px;color:var(--muted)}
-    footer{
-      margin:32px 0 12px;
-      color:var(--muted);
-      font-size:14px;
-    }
-    .muted{color:var(--muted)}
-    code{font-size:12px;background:#eee;padding:2px 4px;border-radius:4px}
-  </style>
 
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Daniel Samir Al Badawi Aazar",
-    "jobTitle":"Social Media · WordPress · No-code",
-    "url":"https://albadawidev.github.io/",
-    "sameAs":[
-      "https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/",
-      "https://github.com/AlbadawiDev",
-      "https://wa.me/584248360302"
-    ]
-  }
-  </script>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(89,165,255,0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(126,231,135,0.08), transparent 22%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(14px);
+      background: rgba(11,18,32,0.75);
+      border-bottom: 1px solid var(--border);
+      z-index: 20;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #3e84ff);
+      border-color: transparent;
+      color: white;
+    }
+
+    .hero {
+      padding: 78px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(89,165,255,0.12);
+      color: #cfe2ff;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.1; }
+    h1 { font-size: clamp(34px, 5vw, 60px); }
+    h2 { font-size: clamp(26px, 3vw, 36px); }
+    h3 { font-size: 20px; }
+
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .service, .project, .timeline-item, .cert, .contact-card {
+      padding: 22px;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: #d7e3ff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    ul.clean {
+      list-style: none;
+      margin: 12px 0 0;
+      padding: 0;
+    }
+
+    ul.clean li {
+      padding: 8px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+    }
+
+    ul.clean li:first-child { border-top: 0; }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .kicker {
+      color: var(--accent-2);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .contact-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .nav-inner { align-items: flex-start; }
+      .hero { padding-top: 42px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Daniel Al Badawi</h1>
-      <p class="tag">Social Media Manager. WordPress fixes. No-code automations. Remote LATAM.</p>
-      <div class="btns">
-        <a class="primary" href="mailto:albadawi.dev@gmail.com">Email me</a>
-        <a class="whatsapp" href="https://wa.me/584248360302?text=Hi%20Daniel%2C%20I%20saw%20your%20portfolio%20and%20need%20help." target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/AlbadawiDev" target="_blank" rel="noopener">GitHub</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">Daniel <span>Al Badawi</span></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Focus</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <!-- What I do -->
-    <section>
-      <h2>What I do for you</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <strong>Social media execution</strong>
-          <ul>
-            <li>Turn your existing content into posts and simple campaigns.</li>
-            <li>Weekly or monthly content calendars.</li>
-            <li>Captions, basic hooks and calls to action.</li>
-          </ul>
+  <header class="hero wrap">
+    <div class="hero-grid">
+      <section class="card hero-copy">
+        <div class="eyebrow">Software Developer in Training</div>
+        <h1>Python, Java, SQL, WordPress, QA and Automation.</h1>
+        <p class="lead">
+          I build practical software projects, improve websites, test digital flows and use AI tools to speed up development, documentation and debugging.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Remote</span>
+          <span class="tag">Cumaná, Venezuela</span>
+          <span class="tag">AWS Cloud Practitioner</span>
+          <span class="tag">GitHub Projects</span>
         </div>
-        <div class="card">
-          <strong>WordPress fixes</strong>
-          <ul>
-            <li>Forms that do not send or land in spam.</li>
-            <li>Speed improvements with before and after metrics.</li>
-            <li>Small layout tweaks without breaking the theme.</li>
-          </ul>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/AlbadawiDev" target="_blank" rel="noreferrer">View GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="#contact">Contact</a>
         </div>
-        <div class="card">
-          <strong>No-code automations</strong>
-          <ul>
-            <li>Zapier or Make connected to Sheets, CRM and email.</li>
-            <li>Flows to handle leads and notifications.</li>
-            <li>Short documentation so your team understands the setup.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <strong>Basic QA and support</strong>
-          <ul>
-            <li>Test flows with a simple checklist.</li>
-            <li>Screenshots and short Loom style videos with findings.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Services and prices -->
-    <section>
-      <h2>Services and starter pricing</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <strong>WordPress Fix</strong> <span class="price">$79 / $179 / $349</span>
-          <ul>
-            <li>Form and email troubleshooting.</li>
-            <li>Basic speed optimization.</li>
-            <li>Lighthouse report before and after.</li>
-          </ul>
-          <p class="small muted">Typical delivery in two to four days. Always with backups.</p>
+      <aside class="hero-side card">
+        <div class="mini-panel">
+          <span class="kicker">Current focus</span>
+          <h3>Remote junior roles and freelance work</h3>
+          <p class="muted">Best fit: Junior Developer, QA Tester, Automation Assistant, WordPress Developer and Backend Support.</p>
         </div>
-        <div class="card">
-          <strong>QA express</strong> <span class="price">$99 / $199 / $349</span>
-          <ul>
-            <li>Checklist across key screens and flows.</li>
-            <li>Issues sorted by impact and urgency.</li>
-            <li>Short video that walks through the main problems.</li>
-          </ul>
-          <p class="small muted">Useful before launches and new funnels.</p>
+        <div class="stats">
+          <div class="stat">
+            <strong>Python</strong>
+            <span class="muted">Automation, scripts and software logic</span>
+          </div>
+          <div class="stat">
+            <strong>Java</strong>
+            <span class="muted">Academic and Android oriented projects</span>
+          </div>
+          <div class="stat">
+            <strong>SQL</strong>
+            <span class="muted">Queries, structure and backend support</span>
+          </div>
+          <div class="stat">
+            <strong>QA</strong>
+            <span class="muted">Functional testing and issue reporting</span>
+          </div>
         </div>
-        <div class="card">
-          <strong>No-code automation</strong> <span class="price">$199 / $399 / $599</span>
-          <ul>
-            <li>Flows between forms, email and spreadsheets.</li>
-            <li>Simple process diagram.</li>
-            <li>Basic logging and error handling.</li>
-          </ul>
-          <p class="small muted">Good for lead follow up, status tracking and internal alerts.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wrap" id="about">
+      <div class="section-head">
+        <div>
+          <span class="kicker">About</span>
+          <h2>Profile</h2>
         </div>
       </div>
-      <p class="small muted">Final price depends on scope. I prefer clear deliverables before we start.</p>
-    </section>
-
-    <!-- Speed case -->
-    <section id="case-study">
-      <h2>Sample case - WordPress speed improvement</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <strong>Before on mobile</strong>
-          <ul>
-            <li>LCP 5.3 seconds</li>
-            <li>INP 280 ms and CLS 0.21</li>
-            <li>Page weight 3.2 MB</li>
-            <li>Requests 90</li>
-            <li>Lighthouse score 42 out of 100</li>
-          </ul>
-        </div>
-        <div class="card">
-          <strong>After on mobile</strong>
-          <ul>
-            <li><span class="kpi">LCP 1.9 seconds</span></li>
-            <li><span class="kpi">INP 120 ms and CLS 0.03</span></li>
-            <li><span class="kpi">Page weight 1.1 MB and 48 requests</span></li>
-            <li><span class="kpi">Lighthouse score 89 out of 100</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <strong>What I change in this type of job</strong>
-        <ul>
-          <li>Convert images to lighter formats and proper sizes with lazy loading.</li>
-          <li>Set up cache and minification with tools like LiteSpeed or Cloudflare.</li>
-          <li>Use <code>defer</code> or <code>async</code> on scripts and inline critical CSS.</li>
-          <li>Add preconnect and preload for key fonts and CDNs.</li>
-          <li>Fix contact forms and email sending.</li>
-          <li>Clean up the database and remove unused options.</li>
-        </ul>
-        <p class="small muted">Metrics from PageSpeed and Lighthouse on a mobile style connection.</p>
+      <div class="grid-2">
+        <article class="card service">
+          <p class="muted">
+            I am a Computer Science student at Universidad de Oriente with a focus on software development, automation, QA and web solutions. I have developed academic, freelance and personal projects using Python, Java, SQL, WordPress, Git and GitHub. I also work with functional testing, workflow automation and AI assisted development.
+          </p>
+        </article>
+        <article class="card service">
+          <h3>Core stack</h3>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">SQL</span>
+            <span class="tag">WordPress</span>
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Zapier</span>
+            <span class="tag">Make</span>
+            <span class="tag">HTML</span>
+            <span class="tag">TypeScript</span>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- Real cushion work -->
-    <section>
-      <h2>Recent real-world work</h2>
-      <div class="card">
-        <strong>Recoloring embroidered cushion designs for a UK home decor brand</strong>
-        <ul>
-          <li>Rebuilt three embroidered cushion designs in Adobe Illustrator from photos.</li>
-          <li>Removed extra elements and cleaned edges and borders.</li>
-          <li>Matched colors to client maps and reference images.</li>
-          <li>Prepared organized AI files and color keys ready for production.</li>
-        </ul>
-        <p class="small muted">Client hired through Upwork. Work delivered on time with clear communication and iterations based on feedback.</p>
+    <section class="section wrap" id="services">
+      <div class="section-head">
+        <div>
+          <span class="kicker">What I can do</span>
+          <h2>Main focus areas</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card service">
+          <h3>Software projects</h3>
+          <p class="muted">Backend oriented projects, academic systems, technical practice and structured code with documentation.</p>
+          <ul class="clean">
+            <li>Python and Java based projects</li>
+            <li>Database structure with SQL</li>
+            <li>GitHub based workflow</li>
+          </ul>
+        </article>
+        <article class="card service">
+          <h3>QA and testing</h3>
+          <p class="muted">Functional testing, issue reporting, flow validation and practical support before delivery or release.</p>
+          <ul class="clean">
+            <li>Checklist based testing</li>
+            <li>Bug reporting and reproduction notes</li>
+            <li>Validation of forms and user flows</li>
+          </ul>
+        </article>
+        <article class="card service">
+          <h3>Automation and WordPress</h3>
+          <p class="muted">Workflow automation and practical website improvements for small business or freelance needs.</p>
+          <ul class="clean">
+            <li>Zapier and Make automations</li>
+            <li>WordPress fixes and updates</li>
+            <li>Forms, integrations and support tasks</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <!-- Process -->
-    <section>
-      <h2>How we work together</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <strong>1. Quick diagnosis</strong>
-          <ul>
-            <li>We define the main problem in one sentence.</li>
-            <li>You show me your site, tool or content.</li>
-          </ul>
+    <section class="section wrap" id="projects">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Projects</span>
+          <h2>Selected work</h2>
         </div>
-        <div class="card">
-          <strong>2. Scope and price</strong>
-          <ul>
-            <li>Clear tasks and a simple list of deliverables.</li>
-            <li>Timeline and communication channel agreed.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <strong>3. Implementation</strong>
-          <ul>
-            <li>Backups when working on production sites.</li>
-            <li>Small changes in short cycles to reduce risk.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <strong>4. Delivery and next step</strong>
-          <ul>
-            <li>Short summary of what changed and the result.</li>
-            <li>Simple ideas for what to improve next if you want.</li>
-          </ul>
-        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card project">
+          <h3>Proyecto UDO Órdenes de Servicios</h3>
+          <p class="muted">Web system built with Flask and PostgreSQL for service order management. Structured with MVC approach and supported by UML documentation.</p>
+          <div class="tag-row">
+            <span class="tag">Flask</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MVC</span>
+            <span class="tag">UML</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://github.com/AlbadawiDev/Proyecto_UDO_OrdenesServicios" target="_blank" rel="noreferrer">View project</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <h3>SharingApp</h3>
+          <p class="muted">Android project in Java for contact management and item lending. Includes validation, persistence and multi screen navigation.</p>
+          <div class="tag-row">
+            <span class="tag">Java</span>
+            <span class="tag">Android</span>
+            <span class="tag">Mobile</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://github.com/AlbadawiDev/SharingApp-Contacts-Borrowed" target="_blank" rel="noreferrer">View on GitHub</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <h3>VeriCred</h3>
+          <p class="muted">Certificate issuance and verification concept with QR based validation. Built as a practical academic project focused on trust and verification flow.</p>
+          <div class="tag-row">
+            <span class="tag">Web App</span>
+            <span class="tag">QR</span>
+            <span class="tag">Verification</span>
+          </div>
+          <div class="project-links">
+            <a class="btn" href="https://github.com/AlbadawiDev/vericred" target="_blank" rel="noreferrer">View on GitHub</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <h3>Automation and support work</h3>
+          <p class="muted">Hands on practical work related to WordPress updates, functional testing, automation support and AI assisted technical productivity.</p>
+          <div class="tag-row">
+            <span class="tag">WordPress</span>
+            <span class="tag">QA</span>
+            <span class="tag">Zapier</span>
+            <span class="tag">Make</span>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- Technical projects -->
-    <section>
-      <h2>Technical projects</h2>
-      <div class="grid">
-        <div class="card">
-          <strong>VeriCred - QR certificate system in Django</strong><br />
-          <span class="small muted">Issue and verify certificates with QR codes and a simple admin panel.</span><br />
-          <a href="https://github.com/AlbadawiDev/vericred" target="_blank" rel="noopener">View on GitHub</a>
+    <section class="section wrap" id="experience">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Experience</span>
+          <h2>Recent track</h2>
         </div>
-        <div class="card">
-          <strong>SharingApp - Android with Java</strong><br />
-          <span class="small muted">Contacts and lending app with validation, list adapters and multi screen navigation.</span><br />
-          <a href="https://github.com/AlbadawiDev/SharingApp-Contacts-Borrowed" target="_blank" rel="noopener">View on GitHub</a>
-        </div>
-        <div class="card">
-          <strong>Small scripts and practice</strong><br />
-          <span class="small muted">Practice and utility scripts in Python and C++.</span><br />
-          <a href="https://github.com/AlbadawiDev" target="_blank" rel="noopener">All repositories</a>
-        </div>
+      </div>
+      <div class="timeline">
+        <article class="card timeline-item">
+          <h3>Freelance Software Developer</h3>
+          <p class="muted">Self employed · Remote</p>
+          <p class="muted">I develop and improve web solutions, automation workflows and software projects for freelance and personal work. My experience includes website updates, functional testing, workflow automation with Zapier and Make, and development of projects published on GitHub.</p>
+        </article>
+        <article class="card timeline-item">
+          <h3>Computer Science Student</h3>
+          <p class="muted">Universidad de Oriente</p>
+          <p class="muted">Building academic projects, diagrams, software documentation and practical systems while strengthening backend, QA and automation skills.</p>
+        </article>
       </div>
     </section>
 
-    <!-- Education -->
-    <section>
-      <h2>Education and certificates</h2>
-      <ul>
-        <li>Bachelor in Computer Science - Universidad de Oriente (in progress).</li>
-        <li>AWS Cloud Practitioner Essentials - AWS.</li>
-        <li>Object Oriented Design - University of Alberta.</li>
-        <li>Foundations: Data, Data, Everywhere - Google.</li>
-        <li>Introduction to Git and GitHub - Google.</li>
-        <li>Programming for Everybody (Python) - University of Michigan.</li>
-      </ul>
+    <section class="section wrap" id="certificates">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Certificates</span>
+          <h2>Training and credentials</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card cert">
+          <h3>AWS Cloud Practitioner Essentials</h3>
+          <p class="muted">Cloud fundamentals, infrastructure basics, security and core AWS concepts.</p>
+        </article>
+        <article class="card cert">
+          <h3>Introduction to Git and GitHub</h3>
+          <p class="muted">Version control, repositories, commits, branches and project collaboration.</p>
+        </article>
+        <article class="card cert">
+          <h3>Programming for Everybody</h3>
+          <p class="muted">Python fundamentals, logic and structured problem solving.</p>
+        </article>
+        <article class="card cert">
+          <h3>Object Oriented Design</h3>
+          <p class="muted">Design principles, structure and modeling for software systems.</p>
+        </article>
+        <article class="card cert">
+          <h3>Foundations: Data, Data, Everywhere</h3>
+          <p class="muted">Foundational data concepts and data oriented thinking.</p>
+        </article>
+        <article class="card cert">
+          <h3>Front End Web Development with Replit AI</h3>
+          <p class="muted">Frontend basics and AI assisted web development practice.</p>
+        </article>
+      </div>
     </section>
 
-    <footer>
-      © <span id="y"></span> Daniel Al Badawi - Based in Cumaná, Venezuela - Available for remote clients worldwide
-    </footer>
-  </div>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+    <section class="section wrap" id="contact">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Contact</span>
+          <h2>Let’s connect</h2>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <article class="card contact-card">
+          <h3>Available for remote opportunities</h3>
+          <p class="muted">Open to junior software roles, QA work, automation support and WordPress related freelance projects.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:albadawi.dev@gmail.com">Email me</a>
+            <a class="btn" href="https://www.linkedin.com/in/daniel-albadawi-dev-1b8459368/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="https://github.com/AlbadawiDev" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </article>
+        <article class="card contact-card">
+          <h3>Quick notes</h3>
+          <ul class="clean">
+            <li>Based in Cumaná, Venezuela</li>
+            <li>Remote work preferred</li>
+            <li>English and Spanish profile available</li>
+            <li>AI assisted workflow for faster execution</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Daniel Al Badawi. Built to present projects, experience and technical growth.</div>
+  </footer>
 </body>
 </html>
