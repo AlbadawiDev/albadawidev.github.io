@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 import hashlib, json
 
 ROOT=Path(__file__).resolve().parents[1]
-MEDIA_SHA='5a3417ee8469407db3c81d8c70abd42e9f1bc4f1322713b9385571b0ab78f1b5'
+MEDIA_SHA='cdd4c4d8b913f198510cb7146c69cdcf924532237077bb5588bd9d97347c273c'
 class Page(HTMLParser):
     def __init__(self):
         super().__init__();self.ids=[];self.links=[];self.h1=0;self.main=0;self.lang=None;self.errors=[]
