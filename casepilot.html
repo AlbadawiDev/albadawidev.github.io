@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A support queue with ownership, service deadlines and an activity trail. Run it locally without a cloud account.">
+<meta name="theme-color" content="#0d191d">
+<title>CasePilot case study · Daniel Al Badawi</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="navigation">
+<div class="wrap nav-inner">
+<a class="brand" href="index.html" aria-label="Daniel Al Badawi home">
+<span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a>
+<nav aria-label="Main navigation">
+<a href="index.html#work">Work</a>
+<a href="index.html#approach">Approach</a>
+<a href="index.html#about">About</a>
+<a class="contact-link" href="index.html#contact">Get in touch <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+</header>
+<main id="main" class="wrap case-main">
+<a class="back-link" href="index.html#work">← Selected work</a>
+<header class="case-header">
+<p class="eyebrow">IT service operations · Python · Case study 02</p>
+<h1>CasePilot</h1>
+<p class="lead">A support queue with ownership, service deadlines and an activity trail. Run it locally without a cloud account.</p>
+<p class="stack">Python / SQLite / JavaScript / HTTP</p>
+<div class="actions">
+<a class="button primary" href="https://github.com/AlbadawiDev/casepilot">Inspect source & reviewed changes ↗</a>
+</div>
+</header>
+<figure class="case-figure">
+<img src="assets/casepilot-dashboard.jpg" alt="CasePilot dashboard with fictional service requests, priorities and resolution statistics" width="1440" height="900">
+<figcaption>Verified local application. All displayed people and records are fictional.</figcaption>
+</figure>
+<div class="case-body">
+<section class="case-section">
+<h2>The problem</h2>
+<p>A support team needs to see which requests are pending, who owns them and what changed. CasePilot turns that queue into an inspectable workflow with explicit permissions.</p>
+</section>
+<section class="case-section">
+<h2>The implemented workflow</h2>
+<ol class="workflow">
+<li>Sign in as the local administrator or support agent.</li>
+<li>Create and filter requests by status, priority and reference.</li>
+<li>Assign a request, investigate it and add an internal note.</li>
+<li>Resolve or reopen the request and inspect its audit history.</li>
+<li>Review service-deadline metrics and export a filtered CSV.</li>
+</ol>
+</section>
+<section class="case-section">
+<h2>Architecture and decisions</h2>
+<p>The browser uses a small JavaScript client and authenticated HTTP endpoints. Python handles validation, sessions, CSRF and workflow rules. SQLite stores users, requests, comments and append-only application audit events. Changes and audit entries share a transaction. SQL pagination keeps the queue bounded.</p>
+</section>
+<section class="case-section evidence-block">
+<p class="eyebrow">Verified on Windows · 7 October 2026</p>
+<h2>What was checked</h2>
+<p>22 HTTP integration tests and 4 frontend tests passed on Windows. Coverage includes role permissions, password-hash migration, session rotation and expiry, Host/Origin validation, CSV formula protection, pagination and out-of-order search responses. A real browser completed create → assign → investigate → resolve; the 390px layout had no page overflow.</p>
+</section>
+<section class="case-section">
+<h2>Current boundaries</h2>
+<p>This is an AI-assisted portfolio demonstration with synthetic data, not a deployed client help desk. Sessions are in memory and the standard-library HTTP server is intended for local demos. A public service requires a production HTTP stack and HTTPS. Docker packaging exists but its runtime was not verified because the local daemon was unavailable.</p>
+</section>
+</div>
+<div class="case-bottom">
+<a class="button secondary" href="index.html#work">← All selected projects</a>
+<a class="text-link" href="mailto:albadawi.dev@gmail.com">Discuss this project ↗</a>
+</div>
+</main>
+<footer class="wrap footer">
+<span>© 2026 Daniel Al Badawi</span>
+<span>Built with code, review and reproducible evidence.</span>
+<a href="https://github.com/AlbadawiDev">GitHub ↗</a>
+</footer>
+</body>
+</html>

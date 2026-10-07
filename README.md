@@ -1,0 +1,17 @@
+# Daniel Al Badawi — portfolio
+
+A static English portfolio with four evidence-based case studies: UDO Thesis Management, CasePilot, VeriCred and PaySub. Every screenshot and the UDO video use fictional data from locally executed applications. Project pages distinguish verified behavior from deployment limitations.
+
+## Preview
+
+From this directory, run `python -m http.server 8090 --bind 127.0.0.1` and open <http://127.0.0.1:8090>. No package installation or build step is required.
+
+## Verification
+
+`python scripts/check_site.py` validates internal files and fragments, unique IDs, one main heading per page, accessibility names, image descriptions, video captions and the committed demo media hash. Browser review covers desktop and 390px mobile layouts, project navigation and the silent video.
+
+The video is an edited walkthrough built from real application screenshots, not a continuous screen recording. It contains no audio. It is separate from CasePilot's original downloaded video.
+
+## Publishing
+
+GitHub Pages uses the repository's configured publishing source. The reviewed update is proposed in PR #1; pushing its branch does not merge it into the published site. No institutional database, private account lists, environment files or credentials belong in this repository.
