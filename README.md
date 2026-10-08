@@ -14,4 +14,4 @@ The video is an edited walkthrough built from real application screenshots, not 
 
 ## Publishing
 
-GitHub Pages uses the repository's configured publishing source. The reviewed update is proposed in PR #1; pushing its branch does not merge it into the published site. No institutional database, private account lists, environment files or credentials belong in this repository.
+GitHub Pages uses the repository's configured publishing source. The reviewed portfolio update in [PR #1](https://github.com/AlbadawiDev/albadawidev.github.io/pull/1) is merged into `main`, and its Pages deployment completed successfully. Further updates go through pull requests and the existing static checks. No institutional database, private account lists, environment files or credentials belong in this repository.
