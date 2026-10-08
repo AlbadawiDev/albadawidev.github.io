@@ -63,6 +63,12 @@
 <h2>What was checked</h2>
 <p>22 HTTP integration tests and 4 frontend tests passed on Windows. Coverage includes role permissions, password-hash migration, session rotation and expiry, Host/Origin validation, CSV formula protection, pagination and out-of-order search responses. A real browser completed create → assign → investigate → resolve; the 390px layout had no page overflow.</p>
 </section>
+<section class="case-section evidence-block">
+<p class="eyebrow">Verified on Linux · 8 October 2026</p>
+<h2>Async-response regression checks</h2>
+<p>All 22 HTTP integration tests and 10 frontend tests passed after correcting stale asynchronous responses. Regression checks cover superseded ticket selections, dashboard and detail responses after changing accounts, and delayed unauthorized or logout responses from an earlier session. Current-session unauthorized responses still return the user to sign-in.</p>
+<p>Controlled deferred promises reproduce these races without timing sleeps. JavaScript syntax and diff checks also passed. This update adds automated regression evidence; the original Windows browser walkthrough above remains the recorded visual check. <a href="https://github.com/AlbadawiDev/casepilot/blob/main/docs/VERIFICATION.md">Read the verification notes ↗</a></p>
+</section>
 <section class="case-section">
 <h2>Current boundaries</h2>
 <p>This is an AI-assisted portfolio demonstration with synthetic data, not a deployed client help desk. Sessions are in memory and the standard-library HTTP server is intended for local demos. A public service requires a production HTTP stack and HTTPS. Docker packaging exists but its runtime was not verified because the local daemon was unavailable.</p>
