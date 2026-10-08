@@ -6,6 +6,13 @@ A static English portfolio with four evidence-based case studies: UDO Thesis Man
 
 From this directory, run `python -m http.server 8090 --bind 127.0.0.1` and open <http://127.0.0.1:8090>. No package installation or build step is required.
 
+## Curriculum vitae
+
+Download the current CV for WordPress, web support and junior QA opportunities:
+
+- [English CV (PDF)](assets/cv/Daniel_Albadawi_CV_EN_WordPress_QA_2026-10-08.pdf)
+- [CV en español (PDF)](assets/cv/Daniel_Albadawi_CV_ES_WordPress_QA_2026-10-08.pdf)
+
 ## Verification
 
 `python scripts/check_site.py` validates internal files and fragments, unique IDs, one main heading per page, accessibility names, image descriptions, video captions and the committed demo media hash. Browser review covers desktop and 390px mobile layouts, project navigation and the silent video.
