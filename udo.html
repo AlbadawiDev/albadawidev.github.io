@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="From a thesis proposal to committee review, document versions and a defense schedule. One traceable academic workflow.">
+<meta name="theme-color" content="#0d191d">
+<title>UDO Thesis Management case study · Daniel Al Badawi</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="navigation">
+<div class="wrap nav-inner">
+<a class="brand" href="index.html" aria-label="Daniel Al Badawi home">
+<span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a>
+<nav aria-label="Main navigation">
+<a href="index.html#work">Work</a>
+<a href="index.html#approach">Approach</a>
+<a href="index.html#about">About</a>
+<a class="contact-link" href="index.html#contact">Get in touch <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+</header>
+<main id="main" class="wrap case-main">
+<a class="back-link" href="index.html#work">← Selected work</a>
+<header class="case-header">
+<p class="eyebrow">Academic workflow · Java · Case study 01</p>
+<h1>UDO Thesis Management</h1>
+<p class="lead">From a thesis proposal to committee review, document versions and a defense schedule. One traceable academic workflow.</p>
+<p class="stack">Java 21 / Spring Boot / JPA / SQL</p>
+<div class="actions">
+<span class="private-source">Source kept private · Synthetic demo below</span>
+</div>
+</header>
+<figure class="case-figure">
+<img src="assets/udo-dashboard.jpg" alt="Local UDO dashboard showing synthetic thesis projects and commission activity" width="1440" height="900">
+<figcaption>Verified local application. All displayed people and records are fictional.</figcaption>
+</figure>
+<div class="case-body">
+<section class="case-section">
+<h2>The problem</h2>
+<p>Thesis administration involves documents, committee decisions, assignments and deadlines. A collection of disconnected records makes the current stage and its history difficult to follow.</p>
+</section>
+<section class="case-section">
+<h2>The implemented workflow</h2>
+<ol class="workflow">
+<li>Create a proposal and maintain its academic file.</li>
+<li>Upload document versions and resolve review observations.</li>
+<li>Confirm reviewer recommendations, record individual decisions and close the committee review.</li>
+<li>Move an approved proposal into a thesis, designate a jury and schedule the defense.</li>
+<li>Inspect the activity history and export filtered reports.</li>
+</ol>
+</section>
+<section class="case-section">
+<h2>Architecture and decisions</h2>
+<p>A Spring Boot application serves a responsive interface and REST endpoints. Service-layer rules coordinate academic states and assignments; JPA persists related records. Flyway versions the schema. Spring Security provides authenticated internal roles and CSRF protection. The isolated demo uses in-memory H2 with fictional people and records.</p>
+</section>
+<section class="case-section evidence-block">
+<p class="eyebrow">Verified on Windows · 7 October 2026</p>
+<h2>What was checked</h2>
+<p>Maven clean verify passed 52 tests on Windows with Java 21. An isolated PostgreSQL 16.2 instance passed migrations V1–V5, Hibernate validation and 37 synthetic HTTP checks. Regressions cover account-change session revocation, jury confirmation, defense scheduling and audit actor length. A real browser completed the academic workflow using synthetic records. The demonstration was assembled from real application screenshots and checked with ffprobe: 1920×1080, 30 fps, 150 seconds, no audio track.</p>
+</section>
+<section class="case-section" aria-labelledby="demo-title">
+<h2 id="demo-title">A 2:30 silent walkthrough</h2>
+<p>Prepared for EgoTECHWORLD. An edited walkthrough using screenshots of the actual Windows application; this is not a continuous screen recording. English captions explain the workflow. No microphone or audio track is required.</p>
+<video controls playsinline preload="metadata" poster="assets/udo-dashboard.jpg" aria-label="Silent UDO thesis management demonstration">
+<source src="assets/udo-demo.mp4" type="video/mp4">
+<track kind="captions" src="assets/udo-captions-en.vtt" srclang="en" label="English" default>
+<p>
+<a href="assets/udo-demo.mp4">Download the silent demonstration</a>
+</p>
+</video>
+<p class="caption-note">The original silent file is preserved locally; a separate script can add narration later without overwriting it.</p>
+</section>
+<section class="case-section">
+<h2>Current boundaries</h2>
+<p>The source repository is private. No institutional database or student records are shared here. PostgreSQL 18, Docker, production concurrency and institutional backup/restore were not verified. Strict transactional audit guarantees and production file-processing controls require further work. Student and professor self-service portals are outside the implemented internal commission workflow.</p>
+</section>
+</div>
+<div class="case-bottom">
+<a class="button secondary" href="index.html#work">← All selected projects</a>
+<a class="text-link" href="mailto:albadawi.dev@gmail.com">Discuss this project ↗</a>
+</div>
+</main>
+<footer class="wrap footer">
+<span>© 2026 Daniel Al Badawi</span>
+<span>Built with code, review and reproducible evidence.</span>
+<a href="https://github.com/AlbadawiDev">GitHub ↗</a>
+</footer>
+</body>
+</html>

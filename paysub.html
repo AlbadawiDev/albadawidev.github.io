@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Merchant plans, client subscriptions and bank-transfer review, with authorization enforced in the API.">
+<meta name="theme-color" content="#0d191d">
+<title>PaySub case study · Daniel Al Badawi</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="navigation">
+<div class="wrap nav-inner">
+<a class="brand" href="index.html" aria-label="Daniel Al Badawi home">
+<span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a>
+<nav aria-label="Main navigation">
+<a href="index.html#work">Work</a>
+<a href="index.html#approach">Approach</a>
+<a href="index.html#about">About</a>
+<a class="contact-link" href="index.html#contact">Get in touch <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+</header>
+<main id="main" class="wrap case-main">
+<a class="back-link" href="index.html#work">← Selected work</a>
+<header class="case-header">
+<p class="eyebrow">Subscription workflows · Laravel · Case study 04</p>
+<h1>PaySub</h1>
+<p class="lead">Merchant plans, client subscriptions and bank-transfer review, with authorization enforced in the API.</p>
+<p class="stack">PHP / Laravel / React / SQL</p>
+<div class="actions">
+<a class="button primary" href="https://github.com/AlbadawiDev/PaySub/tree/codex/windows-audit-20261007">Inspect source & reviewed changes ↗</a>
+</div>
+</header>
+<figure class="case-figure">
+<img src="assets/paysub-plans.jpg" alt="Merchant plan management in the local PaySub demo using synthetic data" width="1440" height="900">
+<figcaption>Verified local application. All displayed people and records are fictional.</figcaption>
+</figure>
+<div class="case-body">
+<section class="case-section">
+<h2>The problem</h2>
+<p>Subscription administration needs to distinguish a reported payment from an approved collection. PaySub gives merchants and clients separate workflows and keeps simulated card payments explicit.</p>
+</section>
+<section class="case-section">
+<h2>The implemented workflow</h2>
+<ol class="workflow">
+<li>A merchant maintains a profile and subscription plans.</li>
+<li>A client subscribes and reports a bank transfer with a receipt.</li>
+<li>The merchant reviews a pending report and approves or rejects it.</li>
+<li>The API checks account status, role and record ownership.</li>
+<li>The interface displays approval state without treating an unreviewed report as income.</li>
+</ol>
+</section>
+<section class="case-section">
+<h2>Architecture and decisions</h2>
+<p>Laravel exposes validated API routes with Sanctum authentication, ownership checks and rate-limited verification codes. React provides merchant and client workflows. Receipts use protected storage and authorized downloads. The local demo uses a new SQLite database and synthetic seed records.</p>
+</section>
+<section class="case-section evidence-block">
+<p class="eyebrow">Verified on Windows · 7 October 2026</p>
+<h2>What was checked</h2>
+<p>25 backend tests with 131 assertions and 4 frontend tests passed on Windows. The frontend build and lint passed; Composer and npm audits reported zero known advisories. Regressions cover ownership takeover, sensitive payment-token exposure, disabled accounts, verification-code replay and receipt access.</p>
+</section>
+<section class="case-section">
+<h2>Current boundaries</h2>
+<p>The linked branch contains the reviewed update. Bank transfers are reports for human approval, not an integration with a bank. Card payment is an explicitly disabled-by-default simulation and cannot run in production. No live payment gateway or PostgreSQL deployment was exercised.</p>
+</section>
+</div>
+<div class="case-bottom">
+<a class="button secondary" href="index.html#work">← All selected projects</a>
+<a class="text-link" href="mailto:albadawi.dev@gmail.com">Discuss this project ↗</a>
+</div>
+</main>
+<footer class="wrap footer">
+<span>© 2026 Daniel Al Badawi</span>
+<span>Built with code, review and reproducible evidence.</span>
+<a href="https://github.com/AlbadawiDev">GitHub ↗</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Issue certificates through an approval workflow, then verify their status through a public QR link.">
+<meta name="theme-color" content="#0d191d">
+<title>VeriCred case study · Daniel Al Badawi</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="navigation">
+<div class="wrap nav-inner">
+<a class="brand" href="index.html" aria-label="Daniel Al Badawi home">
+<span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a>
+<nav aria-label="Main navigation">
+<a href="index.html#work">Work</a>
+<a href="index.html#approach">Approach</a>
+<a href="index.html#about">About</a>
+<a class="contact-link" href="index.html#contact">Get in touch <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+</header>
+<main id="main" class="wrap case-main">
+<a class="back-link" href="index.html#work">← Selected work</a>
+<header class="case-header">
+<p class="eyebrow">Certificate verification · Django · Case study 03</p>
+<h1>VeriCred</h1>
+<p class="lead">Issue certificates through an approval workflow, then verify their status through a public QR link.</p>
+<p class="stack">Python / Django / QR codes / SQL</p>
+<div class="actions">
+<a class="button primary" href="https://github.com/AlbadawiDev/vericred/pull/2">Inspect source & reviewed changes ↗</a>
+</div>
+</header>
+<figure class="case-figure">
+<img src="assets/vericred-verification.jpg" alt="Public VeriCred validation page for a synthetic issued certificate" width="1440" height="900">
+<figcaption>Verified local application. All displayed people and records are fictional.</figcaption>
+</figure>
+<div class="case-body">
+<section class="case-section">
+<h2>The problem</h2>
+<p>A certificate is useful only when its status can be checked and its issuance can be attributed. VeriCred separates drafting, approval and issuance, while keeping unpublished certificates private.</p>
+</section>
+<section class="case-section">
+<h2>The implemented workflow</h2>
+<ol class="workflow">
+<li>An authorized issuer creates and submits a draft.</li>
+<li>A reviewer approves or rejects it; the decision records the reviewer.</li>
+<li>An issuer completes issuance and generates an absolute QR verification URL.</li>
+<li>Anyone can verify an issued certificate; drafts and pending records remain unavailable.</li>
+<li>Authorized staff inspect the audit trail or revoke a certificate.</li>
+</ol>
+</section>
+<section class="case-section">
+<h2>Architecture and decisions</h2>
+<p>Django models represent profiles, certificates and audit events. Role and ownership checks guard transitions and editing. Transactions keep workflow changes consistent with their audit entries. The public verification endpoint exposes issued/revoked statuses only; deployment configuration validates its public origin and security settings.</p>
+</section>
+<section class="case-section evidence-block">
+<p class="eyebrow">Verified on Windows · 7 October 2026</p>
+<h2>What was checked</h2>
+<p>12 tests passed, including unauthorized state changes, cross-owner edits, public visibility, reviewer attribution, absolute QR URLs and rollback after an audit failure. Migrations and secure deployment checks passed. Browser checks covered the dashboard, issued certificate and public verification. The pinned dependencies had zero known advisories at the time of the audit.</p>
+</section>
+<section class="case-section">
+<h2>Current boundaries</h2>
+<p>The reviewed changes are on the linked pull request. PostgreSQL locking and production concurrency were not tested; SQLite does not implement row locks. The application needs operational authentication/rate limits before an Internet deployment. Screenshots contain fictional data.</p>
+</section>
+</div>
+<div class="case-bottom">
+<a class="button secondary" href="index.html#work">← All selected projects</a>
+<a class="text-link" href="mailto:albadawi.dev@gmail.com">Discuss this project ↗</a>
+</div>
+</main>
+<footer class="wrap footer">
+<span>© 2026 Daniel Al Badawi</span>
+<span>Built with code, review and reproducible evidence.</span>
+<a href="https://github.com/AlbadawiDev">GitHub ↗</a>
+</footer>
+</body>
+</html>
