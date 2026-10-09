@@ -6,6 +6,8 @@ import hashlib, json
 
 ROOT=Path(__file__).resolve().parents[1]
 MEDIA_SHA='cdd4c4d8b913f198510cb7146c69cdcf924532237077bb5588bd9d97347c273c'
+# The interactive browser demo is written in Spanish; case studies remain English.
+PAGE_LANGUAGES={'casepilot-demo.html':'es'}
 class Page(HTMLParser):
     def __init__(self):
         super().__init__();self.ids=[];self.links=[];self.h1=0;self.main=0;self.lang=None;self.errors=[]
@@ -25,7 +27,8 @@ for path in sorted(ROOT.glob('*.html')):
     p=Page();p.feed(path.read_text(encoding='utf-8'));pages[path]=p
 errors=[]
 for path,p in pages.items():
-    if p.h1!=1 or p.main!=1 or p.lang!='en':errors.append(f'{path.name}: expected one h1, one main, English lang')
+    expected_lang=PAGE_LANGUAGES.get(path.name,'en')
+    if p.h1!=1 or p.main!=1 or p.lang!=expected_lang:errors.append(f'{path.name}: expected one h1, one main, lang={expected_lang}')
     if len(p.ids)!=len(set(p.ids)):errors.append(f'{path.name}: duplicate IDs')
     errors.extend(f'{path.name}: {x}' for x in p.errors)
     for link in p.links:
