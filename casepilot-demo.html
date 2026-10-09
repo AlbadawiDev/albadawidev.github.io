@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Prueba CasePilot sin instalar nada: crea una solicitud, cambia su estado y exporta la cola. Demo personal con datos ficticios en este navegador.">
+<meta name="theme-color" content="#0d191d">
+<title>CasePilot · Demo interactiva · Daniel Al Badawi</title>
+<style>
+:root{--ink:#0d191d;--paper:#f6f7f2;--muted:#536560;--mint:#72e0be;--line:#dce2db;--green:#176447;--white:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}*{box-sizing:border-box}body{margin:0;line-height:1.5}a{color:inherit;text-underline-offset:3px}button,input,select,textarea{font:inherit}button,a,input,select,textarea{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:default;opacity:.55}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #167759;outline-offset:3px}.wrap{width:min(1180px,calc(100% - 48px));margin:auto}.skip{position:absolute;top:-100px;left:16px;z-index:50;background:white;padding:12px}.skip:focus{top:8px}.nav{border-bottom:1px solid var(--line)}.nav-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-size:16px;font-weight:650}.monogram{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;color:var(--mint);background:var(--ink);font-size:14px}.nav-links{display:flex;flex-wrap:wrap;gap:20px;font-size:13px}.nav-links a{text-decoration:none}.hero{padding:44px 0 30px;display:flex;justify-content:space-between;gap:30px;align-items:end}.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:750;color:var(--green);margin:0 0 12px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(38px,5vw,62px);letter-spacing:-.055em;line-height:1.1;margin-bottom:13px;font-weight:650}h1 span{color:#197359}.lead{color:var(--muted);font-size:16px;max-width:60ch;margin:0}.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;min-height:44px;padding:10px 16px;font-size:13px;font-weight:650;border-radius:7px;border:1px solid #b7c6ba;color:var(--ink);background:transparent;text-decoration:none;white-space:nowrap}.btn:hover{background:#e8eee5}.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}.btn.primary:hover{background:#26473f}.btn.danger{color:#963824}.notice{display:flex;gap:16px;align-items:start;background:#e7eee3;border:1px solid #cfdccd;border-radius:9px;padding:17px 20px;font-size:13px;color:#354d43}.notice strong{color:#204b37}.notice p{margin:0}.demo-pill{flex-shrink:0;display:inline-block;border:1px solid #a8bdaa;padding:4px 9px;border-radius:30px;text-transform:uppercase;letter-spacing:.08em;font-size:9px;font-weight:750}.guide{display:flex;flex-wrap:wrap;gap:18px;padding:22px 0;color:var(--muted);font-size:12px}.guide span{display:flex;gap:8px;align-items:center}.step{display:inline-grid;place-items:center;width:22px;height:22px;border:1px solid #becdbe;border-radius:50%;color:var(--green);font-weight:700;font-size:11px}.workspace{display:grid;grid-template-columns:212px minmax(0,1fr);background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:24px;box-shadow:0 12px 36px #0d191d08}.sidebar{background:var(--ink);color:#f0f5ef;padding:25px 18px;display:flex;flex-direction:column;gap:30px}.product{font-weight:650;font-size:24px;letter-spacing:-.05em}.product span{color:var(--mint)}.sidebar p{font-size:11px;color:#b8c8c7;margin:6px 0 0}.role-control label{display:block;color:var(--mint);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}.role-control select{width:100%;color:#f5f8f4;background:#21363b;border:1px solid #45605b;border-radius:6px;padding:9px 8px;font-size:12px}.side-note{margin-top:auto;border-top:1px solid #37504f;padding-top:17px}.side-note strong{font-size:12px;font-weight:550}.side-note p{font-size:11px;line-height:1.6}.content{padding:28px;min-width:0}.workspace-header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:21px}.workspace-header h2{font-size:21px;letter-spacing:-.03em;margin:0 0 4px}.workspace-header p{color:var(--muted);font-size:12px;margin:0}.storage-status{font-size:10px;display:flex;gap:7px;align-items:center;max-width:210px;color:var(--green)}.storage-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-bottom:24px}.metric{background:#f7f9f5;border:1px solid var(--line);border-radius:8px;padding:14px 15px}.metric span{display:block;font-size:11px;color:var(--muted)}.metric strong{display:block;font-weight:600;font-size:29px;letter-spacing:-.04em;margin:3px 0}.metric small{font-size:10px;color:var(--muted)}.metric.alert strong{color:#a9432f}.queue-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:13px}.queue-head h3{font-size:16px;letter-spacing:-.02em;margin:0}.queue-actions{display:flex;gap:9px;flex-wrap:wrap}.queue-actions .btn{font-size:11px;min-height:37px;padding:7px 11px}.filters{display:grid;grid-template-columns:minmax(140px,1.7fr) 1fr 1fr;gap:11px;margin-bottom:16px}label{font-size:11px;font-weight:650;display:block;margin-bottom:7px}input,textarea,select{color:var(--ink);background:#fff;border:1px solid #bccbbf;border-radius:6px;padding:10px 11px;width:100%;min-height:42px;font-size:13px}textarea{resize:vertical;min-height:94px}input::placeholder,textarea::placeholder{color:#6b7975}select:disabled{background:#edf1eb;color:#5f6e64}.table-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:8px}table{border-collapse:collapse;width:100%;font-size:12px;min-width:610px}th{text-align:left;background:#f7f9f5;font-size:9px;font-weight:750;letter-spacing:.07em;text-transform:uppercase;padding:13px 14px;white-space:nowrap;color:var(--muted)}td{padding:14px;border-top:1px solid #e7ebe3;vertical-align:middle}tr:hover td{background:#fbfcf9}.ticket-link{background:transparent;border:0;padding:0;color:var(--ink);text-align:left;line-height:1.4;display:block;font-size:12px;max-width:300px;overflow-wrap:anywhere}.ticket-link:hover{text-decoration:underline;text-underline-offset:3px}.ticket-link strong{display:block;font-size:10px;letter-spacing:.03em;color:var(--green);font-weight:650;margin-bottom:4px}.requester{display:block;color:var(--muted);font-size:10px;margin-top:5px;overflow-wrap:anywhere}.badge{display:inline-flex;align-items:center;border-radius:30px;padding:4px 8px;white-space:nowrap;font-size:10px;font-weight:600}.badge.open{color:#365e89;background:#eaf1f8}.badge.in_progress{color:#655019;background:#f7f1db}.badge.resolved{color:#236242;background:#e5f3e7}.badge.critical{color:#a63a27;background:#fbe9e3}.badge.high{color:#8b5220;background:#fbefdf}.badge.medium{color:#4b5c83;background:#edf0fa}.badge.low{color:#5a665b;background:#edf1eb}.due{white-space:nowrap;color:var(--muted);font-size:10px}.due.overdue{color:#a9432f}.queue-foot{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-top:13px;font-size:11px;color:var(--muted)}.empty{text-align:center;padding:32px 16px;color:var(--muted)}.activity-panel{margin-top:26px;border-top:1px solid var(--line);padding-top:22px}.activity-panel h3{font-size:14px;margin-bottom:13px}.events{list-style:none;margin:0;padding:0;display:grid;gap:13px}.event{display:flex;gap:11px;align-items:start;font-size:11px}.event-dot{width:7px;height:7px;background:#7fae91;border-radius:50%;flex-shrink:0;margin-top:6px}.event p{margin:0;overflow-wrap:anywhere}.event small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.footer{display:flex;justify-content:space-between;align-items:start;gap:24px;margin:24px auto 38px;color:var(--muted);font-size:11px}.footer p{margin:0;max-width:68ch}.footer a{white-space:nowrap}dialog{width:min(580px,calc(100% - 30px));max-height:calc(100dvh - 32px);padding:0;border:1px solid #becdc0;border-radius:12px;color:var(--ink);background:#fff;box-shadow:0 25px 90px #0d191d35;overflow:auto}dialog::backdrop{background:#0d191d80}.modal-header{display:flex;justify-content:space-between;gap:20px;align-items:start;padding:23px 24px 17px;border-bottom:1px solid var(--line)}.modal-header h2{font-size:23px;line-height:1.25;letter-spacing:-.035em;margin:4px 0;overflow-wrap:anywhere}.modal-header .eyebrow{margin:0}.close{border:1px solid #cbd6ca;border-radius:6px;background:#fff;width:35px;height:35px;font-size:22px;line-height:1;flex-shrink:0}.modal-body{padding:21px 24px}.field{margin-bottom:17px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.modal-actions{display:flex;justify-content:end;gap:10px;padding:17px 24px;border-top:1px solid var(--line);background:#f8faf6}.form-error{color:#a9432f;font-size:12px;margin:10px 0 0}.detail-description{font-size:13px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.detail-facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:23px;font-size:12px}.detail-facts dt{font-size:10px;color:var(--muted);margin-bottom:3px}.detail-facts dd{margin:0;overflow-wrap:anywhere}.hint{font-size:11px;color:var(--muted);margin:8px 0 0}.detail-fields{border-top:1px solid var(--line);padding-top:20px}.detail-fields h3{font-size:14px;margin-bottom:16px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:8px;font-size:12px;box-shadow:0 6px 22px #0d191d25;max-width:calc(100% - 32px);z-index:100}.toast:empty{display:none}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}noscript{display:block;background:#fbe9e3;padding:18px;color:#8b3526;margin:20px auto}
+@media(max-width:1000px){.workspace{grid-template-columns:174px minmax(0,1fr)}.sidebar{padding:24px 14px}.content{padding:22px}.metric{padding:12px}.metric span{font-size:10px}.filters{grid-template-columns:1.5fr 1fr 1fr}}
+@media(max-width:760px){.wrap{width:calc(100% - 28px)}.nav-inner{padding:15px 0;gap:13px;flex-wrap:wrap}.nav-links{gap:17px;font-size:12px}.hero{padding:32px 0 24px;align-items:start}.hero>.btn{display:none}.lead{font-size:14px}.notice{display:block;padding:15px}.notice .demo-pill{margin-bottom:9px}.guide{gap:12px;font-size:11px}.workspace{display:block}.sidebar{padding:15px 17px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center}.product{font-size:22px}.sidebar>div:first-child p{font-size:10px}.role-control label{margin-bottom:5px;font-size:8px}.role-control select{font-size:11px;padding:7px;min-height:36px}.side-note{display:none}.content{padding:20px 15px}.workspace-header{align-items:start}.workspace-header h2{font-size:20px}.storage-status{font-size:9px;max-width:140px}.metrics{grid-template-columns:1fr 1fr;gap:9px;margin-bottom:22px}.metric strong{font-size:27px}.metric span{font-size:11px}.filters{grid-template-columns:1fr 1fr}.filters>div:first-child{grid-column:1/-1}.queue-head{align-items:start;flex-wrap:wrap}.queue-actions{width:100%}.queue-actions .btn{flex-grow:1;min-height:41px;font-size:11px}.queue-foot{flex-wrap:wrap;gap:7px}.footer{flex-direction:column;gap:14px;margin-bottom:28px}.form-grid{grid-template-columns:1fr}.modal-body{padding:20px}.modal-header{padding:20px}.modal-actions{padding:16px 20px}.detail-facts{gap:12px}.badge{font-size:9px}.toast{bottom:14px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar a la demo</a>
+<header class="nav"><div class="wrap nav-inner"><a class="brand" href="index.html"><span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a><nav class="nav-links" aria-label="Portafolio"><a href="casepilot.html">Caso de estudio ↗</a><a href="https://github.com/AlbadawiDev/casepilot">Código fuente ↗</a></nav></div></header>
+<main id="main" class="wrap">
+<section class="hero" aria-labelledby="page-title"><div><p class="eyebrow">Proyecto personal · Prueba en el navegador</p><h1 id="page-title">CasePilot<span>.</span></h1><p class="lead">De una solicitud pendiente a una solución documentada. Explora el flujo de soporte sin instalar nada.</p></div><button type="button" class="btn primary" id="start-create">＋ Crear solicitud</button></section>
+<aside class="notice" aria-label="Límites de esta demostración"><span class="demo-pill">Datos ficticios</span><p><strong>Demostración personal.</strong> Los cambios se guardan en este navegador. El rol es una simulación, sin autenticación. Esta página no ejecuta el backend Python ni se conecta a sistemas de clientes. Evita introducir datos personales.</p></aside>
+<div class="guide" aria-label="Recorrido sugerido"><span><b class="step">1</b>Crea una solicitud</span><span><b class="step">2</b>Ábrela y cambia su estado</span><span><b class="step">3</b>Filtra la cola y exporta un CSV</span></div>
+<noscript>Esta demo requiere JavaScript. <a href="casepilot.html">Consulta el caso de estudio</a> para revisar el proyecto y sus pruebas.</noscript>
+<section class="workspace" aria-label="Espacio de soporte de demostración">
+<aside class="sidebar"><div><div class="product">casepilot<span>.</span></div><p>Operaciones de soporte</p></div><div class="role-control"><label for="demo-role">Rol simulado</label><select id="demo-role"><option value="admin">Administración</option><option value="agent">Agente de soporte</option></select></div><div class="side-note"><strong>Un flujo, visible.</strong><p>Abierto → En curso → Resuelto.<br>Reabre un caso cuando haga falta.</p><p>Las reglas de esta página son una simulación local, no controles de seguridad.</p></div></aside>
+<div class="content">
+<header class="workspace-header"><div><h2>Resumen del servicio</h2><p>Solicitudes y próximos pasos.</p></div><div class="storage-status" role="status"><span class="storage-dot" aria-hidden="true"></span><span id="storage-status">Datos locales de la demo</span></div></header>
+<div class="metrics" aria-label="Indicadores de toda la cola"><article class="metric"><span>Solicitudes totales</span><strong id="metric-total">0</strong><small>Toda la cola</small></article><article class="metric"><span>En atención</span><strong id="metric-active">0</strong><small>Abiertas y en curso</small></article><article class="metric alert"><span>Fuera de plazo</span><strong id="metric-overdue">0</strong><small>Activas y vencidas</small></article><article class="metric"><span>Resueltas</span><strong id="metric-resolved">0%</strong><small>Porcentaje de la cola</small></article></div>
+<section aria-labelledby="queue-title"><div class="queue-head"><h3 id="queue-title">Cola de solicitudes</h3><div class="queue-actions"><button class="btn" type="button" id="export-csv">↓ Exportar CSV</button><button class="btn primary" type="button" id="new-ticket">＋ Nueva solicitud</button></div></div>
+<div class="filters"><div><label for="search">Buscar</label><input id="search" type="search" maxlength="120" placeholder="Título, persona o CP-0001" autocomplete="off"></div><div><label for="filter-status">Estado</label><select id="filter-status"><option value="">Todos</option><option value="open">Abierto</option><option value="in_progress">En curso</option><option value="resolved">Resuelto</option></select></div><div><label for="filter-priority">Prioridad</label><select id="filter-priority"><option value="">Todas</option><option value="critical">Crítica</option><option value="high">Alta</option><option value="medium">Media</option><option value="low">Baja</option></select></div></div>
+<div class="table-wrap"><table><caption class="sr-only">Abre una solicitud para consultar su detalle y actualizarla.</caption><thead><tr><th scope="col">Solicitud</th><th scope="col">Prioridad</th><th scope="col">Estado</th><th scope="col">Asignación</th><th scope="col">Plazo</th></tr></thead><tbody id="ticket-rows"></tbody></table></div><div class="queue-foot"><span id="result-count" aria-live="polite"></span><span>El CSV respeta los filtros activos.</span></div></section>
+<section class="activity-panel" aria-labelledby="activity-title"><h3 id="activity-title">Actividad reciente</h3><ol id="events" class="events"></ol></section>
+</div></section>
+</main>
+<footer class="wrap footer"><p>La aplicación completa incluye Python, SQLite, sesiones y pruebas de integración. Esta vista reproduce un flujo para explorar el proyecto. <a href="casepilot.html">Ver arquitectura, evidencia y límites ↗</a></p><button type="button" id="reset-demo" class="btn">Restablecer demo</button></footer>
+<dialog id="create-dialog" aria-labelledby="create-title"><form id="create-form"><header class="modal-header"><div><p class="eyebrow">Nueva solicitud</p><h2 id="create-title">¿Qué necesita atención?</h2></div><button type="button" class="close" data-close="create-dialog" aria-label="Cerrar creación">×</button></header><div class="modal-body"><div class="field"><label for="ticket-title">Título</label><input id="ticket-title" name="title" required minlength="5" maxlength="110" placeholder="Ej.: Revisar acceso al sistema de prueba"></div><div class="field"><label for="ticket-requester">Solicitante ficticio</label><input id="ticket-requester" name="requester" required minlength="2" maxlength="100" placeholder="Ej.: Alex Demo"></div><div class="form-grid"><div class="field"><label for="ticket-category">Categoría</label><select id="ticket-category" name="category"><option value="Access">Accesos</option><option value="Software">Software</option><option value="Hardware">Hardware</option><option value="Network">Red</option><option value="Billing">Facturación</option><option value="Other">Otra</option></select></div><div class="field"><label for="ticket-priority">Prioridad</label><select id="ticket-priority" name="priority"><option value="medium">Media · 96 h</option><option value="low">Baja · 168 h</option><option value="high">Alta · 48 h</option><option value="critical">Crítica · 24 h</option></select></div></div><div class="field"><label for="ticket-description">Descripción</label><textarea id="ticket-description" name="description" required minlength="8" maxlength="2000" placeholder="Describe un problema ficticio, su impacto y lo que ya revisaste." rows="4"></textarea></div><p id="create-error" class="form-error" role="alert"></p><p class="hint">Máximo 100 solicitudes en esta demo. No introduzcas información de clientes.</p></div><footer class="modal-actions"><button type="button" class="btn" data-close="create-dialog">Cancelar</button><button type="submit" class="btn primary">Crear solicitud →</button></footer></form></dialog>
+<dialog id="detail-dialog" aria-labelledby="detail-title"><form id="detail-form"><header class="modal-header"><div><p class="eyebrow" id="detail-code">Solicitud</p><h2 id="detail-title">Detalle</h2></div><button type="button" class="close" data-close="detail-dialog" aria-label="Cerrar detalle">×</button></header><div class="modal-body"><p id="detail-description" class="detail-description"></p><dl class="detail-facts"><div><dt>Solicitante ficticio</dt><dd id="detail-requester"></dd></div><div><dt>Categoría</dt><dd id="detail-category"></dd></div><div><dt>Creada</dt><dd id="detail-created"></dd></div><div><dt>Plazo</dt><dd id="detail-due"></dd></div></dl><div class="detail-fields"><h3>Próximo paso</h3><div class="form-grid"><div class="field"><label for="detail-status">Estado</label><select id="detail-status" name="status"></select></div><div class="field"><label for="detail-priority">Prioridad</label><select id="detail-priority" name="priority"><option value="low">Baja</option><option value="medium">Media</option><option value="high">Alta</option><option value="critical">Crítica</option></select></div></div><div class="field"><label for="detail-assignee">Asignar a</label><select id="detail-assignee" name="assignee"><option value="">Sin asignar</option><option value="Morgan Demo">Morgan Demo</option><option value="Alex Demo">Alex Demo</option></select><p id="role-hint" class="hint"></p></div><p class="hint">Las opciones de estado siguen el flujo de CasePilot. Cambiar la prioridad conserva el plazo original.</p><p id="detail-error" class="form-error" role="alert"></p></div></div><footer class="modal-actions"><button type="button" class="btn" data-close="detail-dialog">Cerrar</button><button type="submit" class="btn primary">Guardar cambios</button></footer></form></dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><header class="modal-header"><h2 id="reset-title">Restablecer esta demo</h2><button type="button" class="close" data-close="reset-dialog" aria-label="Cerrar confirmación">×</button></header><div class="modal-body"><p class="detail-description">Se eliminarán las solicitudes que creaste aquí y volverán los datos ficticios iniciales. Esta acción afecta únicamente esta demo en este navegador.</p></div><footer class="modal-actions"><button type="button" class="btn" data-close="reset-dialog">Cancelar</button><button type="button" class="btn danger" id="confirm-reset">Restablecer datos</button></footer></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<script>
+'use strict';
+(() => {
+  const KEY = 'daniel.casepilot.browser-demo.v1';
+  const STATUS = Object.freeze({open:'Abierto',in_progress:'En curso',resolved:'Resuelto'});
+  const PRIORITY = Object.freeze({low:'Baja',medium:'Media',high:'Alta',critical:'Crítica'});
+  const CATEGORY = Object.freeze({Access:'Accesos',Software:'Software',Hardware:'Hardware',Network:'Red',Billing:'Facturación',Other:'Otra'});
+  const TRANSITIONS = Object.freeze({open:['in_progress'],in_progress:['resolved','open'],resolved:['open']});
+  const DEADLINES = Object.freeze({low:168,medium:96,high:48,critical:24});
+  const ASSIGNEES = Object.freeze(['','Morgan Demo','Alex Demo']);
+  const iso = value => new Date(value).toISOString();
+  const own = (values,key) => Object.hasOwn(values,key);
+  const validDate = value => typeof value === 'string' && Number.isFinite(Date.parse(value));
+  const copy = value => JSON.parse(JSON.stringify(value));
+  function text(value,min,max,name) {
+    if (typeof value !== 'string') throw new Error('Revisa '+name+'.');
+    const clean=value.trim();
+    if(clean.length<min || clean.length>max) throw new Error(name+' debe tener entre '+min+' y '+max+' caracteres.');
+    return clean;
+  }
+  function seed(now) {
+    const rows=[
+      ['Recuperar acceso al entorno de prueba','El usuario ficticio no logra acceder al entorno después de un cambio de contraseña.','Access','critical','open','Paula Demo','Morgan Demo',-30],
+      ['Revisar conexión de la sala de formación','Los dispositivos de prueba pierden la conexión durante las sesiones de formación.','Network','high','in_progress','Luis Demo','Alex Demo',-53],
+      ['Actualizar plantilla del informe mensual','Ajustar el encabezado y las columnas de la plantilla de prueba para el equipo.','Software','medium','open','Sofía Demo','',-13],
+      ['Diagnosticar impresora de laboratorio','La impresora de demostración muestra trabajos pendientes después de reiniciarla.','Hardware','high','open','Diego Demo','',-3],
+      ['Corregir texto del portal interno de muestra','Hay dos enlaces y un texto desactualizados en una página del entorno ficticio.','Software','low','in_progress','Valeria Demo','Alex Demo',-25],
+      ['Verificar registro de factura de prueba','El importe de un registro sintético no coincide con el documento de muestra.','Billing','medium','open','Andrés Demo','Morgan Demo',-5],
+      ['Restablecer cuenta del sistema de muestra','La cuenta ficticia se restableció y el solicitante confirmó el acceso al entorno.','Access','high','resolved','Camila Demo','Morgan Demo',-34],
+      ['Instalar herramienta de formación','Se completó la instalación de una herramienta en el equipo de demostración.','Software','low','resolved','Marcos Demo','Alex Demo',-60],
+      ['Documentar conexión del equipo de prueba','Preparar pasos de diagnóstico para reproducir la conexión en el laboratorio ficticio.','Other','low','open','Lucía Demo','',-2]
+    ];
+    return {version:1,tickets:rows.map((row,index)=>{
+      const [title,description,category,priority,status,requester,assignee,hours]=row;
+      const created=now+hours*3600000;
+      return {id:index+1,code:'CP-'+String(index+1).padStart(4,'0'),title,description,category,priority,status,requester,assignee,created_at:iso(created),updated_at:iso(created),due_at:iso(created+DEADLINES[priority]*3600000)};
+    }),events:[{code:'DEMO',detail:'Se cargó una cola ficticia para explorar el flujo de soporte.',actor:'Datos de muestra',at:iso(now)}]};
+  }
+  function validData(value) {
+    if(!value || value.version!==1 || !Array.isArray(value.tickets) || value.tickets.length>100 || !Array.isArray(value.events) || value.events.length>250) return false;
+    const ids=new Set();
+    for(const item of value.tickets) {
+      if(!item || !Number.isSafeInteger(item.id) || item.id<1 || item.id>999999 || ids.has(item.id) || item.code!=='CP-'+String(item.id).padStart(4,'0')) return false;
+      ids.add(item.id);
+      try {text(item.title,5,110,'Título');text(item.requester,2,100,'Solicitante');text(item.description,8,2000,'Descripción');} catch(_) {return false;}
+      if(!own(STATUS,item.status) || !own(PRIORITY,item.priority) || !own(CATEGORY,item.category) || !ASSIGNEES.includes(item.assignee) || ![item.created_at,item.updated_at,item.due_at].every(validDate)) return false;
+    }
+    return value.events.every(event=>event && typeof event.code==='string' && event.code.length<=20 && typeof event.detail==='string' && event.detail.length<=1000 && typeof event.actor==='string' && event.actor.length<=100 && validDate(event.at));
+  }
+  function createStore(storage,clock=Date.now) {
+    let data=seed(clock()),persistent=true,restoreReason='';
+    try {
+      const saved=storage.getItem(KEY);
+      if(saved!==null) {
+        try {const parsed=JSON.parse(saved);if(!validData(parsed))throw new Error('Invalid demo data');data=parsed;}
+        catch(_) {restoreReason='invalid';}
+      }
+    } catch(_) {persistent=false;restoreReason='unavailable';}
+    let role='admin';
+    function persist() {try {storage.setItem(KEY,JSON.stringify(data));persistent=true;}catch(_) {persistent=false;}}
+    function event(code,detail) {data.events.unshift({code,detail,actor:role==='admin'?'Administración simulada':'Agente simulado',at:iso(clock())});data.events=data.events.slice(0,250);}
+    persist();
+    return {
+      get tickets(){return copy(data.tickets);}, get events(){return copy(data.events);}, get persistent(){return persistent;}, get restoreReason(){return restoreReason;}, get role(){return role;},
+      setRole(next) {if(!['admin','agent'].includes(next))throw new Error('Rol no válido.');role=next;},
+      filtered(filters={}) {
+        const query=String(filters.query||'').trim().toLocaleLowerCase('es');
+        return copy(data.tickets.filter(item=>(!filters.status || item.status===filters.status) && (!filters.priority || item.priority===filters.priority) && (!query || [item.code,item.title,item.requester,item.assignee].join(' ').toLocaleLowerCase('es').includes(query))).sort((a,b)=>Date.parse(b.updated_at)-Date.parse(a.updated_at)||b.id-a.id));
+      },
+      create(fields) {
+        if(data.tickets.length>=100)throw new Error('Esta demo admite 100 solicitudes. Restablece los datos para comenzar otra vez.');
+        const title=text(fields.title,5,110,'Título'),requester=text(fields.requester,2,100,'Solicitante'),description=text(fields.description,8,2000,'Descripción');
+        if(!own(CATEGORY,fields.category) || !own(PRIORITY,fields.priority))throw new Error('Revisa la categoría y la prioridad.');
+        const id=Math.max(0,...data.tickets.map(item=>item.id))+1,now=clock();
+        const ticket={id,code:'CP-'+String(id).padStart(4,'0'),title,requester,description,category:fields.category,priority:fields.priority,status:'open',assignee:'',created_at:iso(now),updated_at:iso(now),due_at:iso(now+DEADLINES[fields.priority]*3600000)};
+        data.tickets.push(ticket);event(ticket.code,'Solicitud creada: '+title);persist();return copy(ticket);
+      },
+      update(id,fields) {
+        const ticket=data.tickets.find(item=>item.id===id);if(!ticket)throw new Error('La solicitud ya no está disponible.');
+        if(!own(STATUS,fields.status) || !own(PRIORITY,fields.priority) || !ASSIGNEES.includes(fields.assignee))throw new Error('Revisa los valores de la solicitud.');
+        if(fields.status!==ticket.status && !TRANSITIONS[ticket.status].includes(fields.status))throw new Error('El cambio debe seguir el flujo: abierto → en curso → resuelto.');
+        if(role!=='admin' && fields.assignee!==ticket.assignee)throw new Error('La asignación requiere el rol de administración simulada.');
+        const changes=[];
+        if(ticket.status!==fields.status)changes.push('Estado: '+STATUS[ticket.status]+' → '+STATUS[fields.status]);
+        if(ticket.priority!==fields.priority)changes.push('Prioridad: '+PRIORITY[ticket.priority]+' → '+PRIORITY[fields.priority]);
+        if(ticket.assignee!==fields.assignee)changes.push('Asignación: '+(fields.assignee||'Sin asignar'));
+        if(!changes.length)return false;
+        Object.assign(ticket,{status:fields.status,priority:fields.priority,assignee:fields.assignee,updated_at:iso(clock())});
+        event(ticket.code,changes.join(' · '));persist();return true;
+      },
+      reset() {data=seed(clock());role='admin';restoreReason='';persist();}
+    };
+  }
+  function csvCell(value) {
+    const source=String(value??'');
+    const safe=/^[\s]*[=+\-@]/.test(source) || /^[\t\r\n]/.test(source)?"'"+source:source;
+    return '"'+safe.replace(/"/g,'""')+'"';
+  }
+  function toCSV(tickets) {
+    const columns=['code','title','category','priority','status','requester','assignee','created_at','due_at'];
+    return '\uFEFF'+[columns.map(csvCell).join(','),...tickets.map(ticket=>columns.map(key=>csvCell(ticket[key])).join(','))].join('\r\n')+'\r\n';
+  }
+  globalThis.CasePilotDemo=Object.freeze({createStore,toCSV,csvCell,validData,STATUS,PRIORITY,CATEGORY,TRANSITIONS,KEY});
+  if(typeof document==='undefined')return;
+  const $=id=>document.getElementById(id);
+  let storage;try{storage=window.localStorage;}catch(_){storage={getItem(){throw new Error('Unavailable');},setItem(){throw new Error('Unavailable');}};}
+  const store=createStore(storage);
+  let selected=null,toastTimer,returnFocus=null;
+  const date=value=>new Intl.DateTimeFormat('es',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(value));
+  const filters=()=>({query:$('search').value,status:$('filter-status').value,priority:$('filter-priority').value});
+  function node(tag,value,className) {const element=document.createElement(tag);if(value!==undefined)element.textContent=String(value);if(className)element.className=className;return element;}
+  function toast(message) {clearTimeout(toastTimer);$('toast').textContent=message;toastTimer=setTimeout(()=>{$('toast').textContent='';},5500);}
+  function openDialog(id) {returnFocus=document.activeElement;$(id).showModal();}
+  function showDetail(id) {
+    const ticket=store.tickets.find(item=>item.id===id);if(!ticket)return;
+    selected=ticket.id;
+    $('detail-code').textContent=ticket.code;$('detail-title').textContent=ticket.title;$('detail-description').textContent=ticket.description;
+    $('detail-requester').textContent=ticket.requester;$('detail-category').textContent=CATEGORY[ticket.category];$('detail-created').textContent=date(ticket.created_at);$('detail-due').textContent=date(ticket.due_at);
+    const status=$('detail-status');status.replaceChildren();
+    for(const value of [ticket.status,...TRANSITIONS[ticket.status]]) {const option=node('option',STATUS[value]);option.value=value;status.append(option);}
+    status.value=ticket.status;$('detail-priority').value=ticket.priority;$('detail-assignee').value=ticket.assignee;$('detail-assignee').disabled=store.role!=='admin';
+    $('role-hint').textContent=store.role==='admin'?'La administración simulada asigna solicitudes al equipo.':'El agente simulado cambia estados y prioridades. La asignación queda reservada a administración.';
+    $('detail-error').textContent='';openDialog('detail-dialog');
+  }
+  function render() {
+    const all=store.tickets,now=Date.now(),active=all.filter(item=>item.status!=='resolved');
+    $('metric-total').textContent=all.length;$('metric-active').textContent=active.length;$('metric-overdue').textContent=active.filter(item=>Date.parse(item.due_at)<now).length;$('metric-resolved').textContent=(all.length?Math.round(all.filter(item=>item.status==='resolved').length/all.length*100):0)+'%';
+    $('storage-status').textContent=store.persistent?'Guardado en este navegador':'Memoria temporal: no se guarda al cerrar';
+    $('storage-status').parentElement.style.color=store.persistent?'':'#a9432f';
+    const rows=store.filtered(filters()),body=$('ticket-rows');body.replaceChildren();
+    for(const ticket of rows) {
+      const row=node('tr'),first=node('td'),button=node('button',undefined,'ticket-link');button.type='button';button.dataset.ticket=String(ticket.id);button.setAttribute('aria-label','Abrir '+ticket.code+': '+ticket.title);
+      button.append(node('strong',ticket.code),node('span',ticket.title));first.append(button,node('span',ticket.requester,'requester'));row.append(first);
+      const priority=node('td');priority.append(node('span',PRIORITY[ticket.priority],'badge '+ticket.priority));row.append(priority);
+      const status=node('td');status.append(node('span',STATUS[ticket.status],'badge '+ticket.status));row.append(status);
+      row.append(node('td',ticket.assignee||'Sin asignar'));
+      const late=ticket.status!=='resolved' && Date.parse(ticket.due_at)<now;
+      row.append(node('td',date(ticket.due_at)+(late?' · Vencido':''),'due'+(late?' overdue':'')));body.append(row);
+    }
+    if(!rows.length){const row=node('tr'),cell=node('td','Sin resultados. Cambia la búsqueda o los filtros.','empty');cell.colSpan=5;row.append(cell);body.append(row);}
+    $('result-count').textContent=rows.length+' de '+all.length+' solicitudes';
+    $('events').replaceChildren();
+    for(const event of store.events.slice(0,5)) {const item=node('li',undefined,'event'),body=node('div');item.append(node('span','', 'event-dot'));body.append(node('p',event.code+' · '+event.detail),node('small',event.actor+' · '+date(event.at)));item.append(body);$('events').append(item);}
+  }
+  for(const id of ['start-create','new-ticket'])$(id).addEventListener('click',()=>{$('create-error').textContent='';openDialog('create-dialog');});
+  for(const button of document.querySelectorAll('[data-close]'))button.addEventListener('click',()=>$(button.dataset.close).close());
+  for(const dialog of document.querySelectorAll('dialog'))dialog.addEventListener('close',()=>{
+    if(returnFocus?.isConnected)returnFocus.focus();
+    else if(dialog.id==='detail-dialog'){
+      const replacement=document.querySelector('button[data-ticket="'+selected+'"]');
+      (replacement || $('search')).focus();
+    }
+  });
+  $('ticket-rows').addEventListener('click',event=>{const button=event.target.closest('button[data-ticket]');if(button)showDetail(Number(button.dataset.ticket));});
+  $('create-form').addEventListener('submit',event=>{
+    event.preventDefault();$('create-error').textContent='';
+    try {const ticket=store.create(Object.fromEntries(new FormData(event.currentTarget)));$('create-dialog').close();event.currentTarget.reset();$('search').value='';$('filter-status').value='';$('filter-priority').value='';render();toast(ticket.code+' creada. Ábrela para avanzar su estado.');}
+    catch(error){$('create-error').textContent=error.message;}
+  });
+  $('detail-form').addEventListener('submit',event=>{
+    event.preventDefault();$('detail-error').textContent='';
+    try {const changed=store.update(selected,{status:$('detail-status').value,priority:$('detail-priority').value,assignee:$('detail-assignee').value});$('detail-dialog').close();render();toast(changed?'Cambios guardados en la demo.':'No había cambios que guardar.');}
+    catch(error){$('detail-error').textContent=error.message;}
+  });
+  $('search').addEventListener('input',render);for(const id of ['filter-status','filter-priority'])$(id).addEventListener('change',render);
+  $('demo-role').addEventListener('change',event=>{store.setRole(event.target.value);toast('Rol cambiado. Es una simulación local, sin autenticación.');});
+  $('export-csv').addEventListener('click',()=>{
+    const rows=store.filtered(filters()),url=URL.createObjectURL(new Blob([toCSV(rows)],{type:'text/csv;charset=utf-8'}));
+    const link=node('a');link.href=url;link.download='CasePilot-demo-'+new Date().toISOString().slice(0,10)+'.csv';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('CSV exportado: '+rows.length+' solicitudes con los filtros actuales.');
+  });
+  $('reset-demo').addEventListener('click',()=>openDialog('reset-dialog'));
+  $('confirm-reset').addEventListener('click',()=>{store.reset();$('demo-role').value='admin';$('search').value='';$('filter-status').value='';$('filter-priority').value='';$('create-form').reset();selected=null;$('reset-dialog').close();render();toast('Demo restablecida con 9 solicitudes ficticias.');});
+  render();if(store.restoreReason==='invalid')toast('Los datos guardados no eran válidos. Se restauró la cola ficticia.');
+})();
+</script>
+</body>
+</html>
