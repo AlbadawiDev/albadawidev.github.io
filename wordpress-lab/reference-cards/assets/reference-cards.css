@@ -1,0 +1,47 @@
+.reference-cards {
+  color: #18283b;
+  font-family: inherit;
+  margin-block: 1.5rem;
+}
+.reference-cards .reference-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.reference-cards .reference-cards__item { margin: 0; padding: 0; }
+.reference-cards .reference-cards__card {
+  background: #fff;
+  border: 1px solid #bccbda;
+  border-radius: .75rem;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1.25rem;
+  overflow-wrap: anywhere;
+}
+.reference-cards .reference-cards__title {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin: 0 0 .65rem;
+}
+.reference-cards .reference-cards__title a {
+  color: #164b79;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.reference-cards .reference-cards__title a:hover { color: #102f4c; }
+.reference-cards .reference-cards__title a:focus-visible {
+  outline: 3px solid #164b79;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.reference-cards .reference-cards__date { color: #46566a; font-size: .875rem; }
+.reference-cards .reference-cards__excerpt { line-height: 1.6; margin: .8rem 0 0; }
+.reference-cards .reference-cards__status {
+  background: #f3f6fa;
+  border: 1px solid #bccbda;
+  border-radius: .5rem;
+  padding: 1rem;
+}
