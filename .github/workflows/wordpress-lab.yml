@@ -1,0 +1,79 @@
+name: WordPress lab integration
+
+on:
+  push:
+    paths:
+      - 'wordpress-lab/**'
+      - '.github/workflows/wordpress-lab.yml'
+  pull_request:
+    paths:
+      - 'wordpress-lab/**'
+      - '.github/workflows/wordpress-lab.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wordpress-mysql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: wordpress_lab_ci
+          MYSQL_DATABASE: wordpress_lab
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -pwordpress_lab_ci"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    env:
+      WP_ROOT: ${{ runner.temp }}/reference-cards-wordpress/wordpress
+      WP_LAB_ALLOW_INSTALL: '1'
+      WP_LAB_DB_NAME: wordpress_lab
+      WP_LAB_DB_USER: root
+      WP_LAB_DB_PASSWORD: wordpress_lab_ci
+      WP_LAB_DB_HOST: 127.0.0.1:3306
+      WP_LAB_ARTIFACTS: ${{ runner.temp }}/wordpress-lab-artifacts
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure actual PHP runtime
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mysqli, dom
+          coverage: none
+      - name: Lint all lab PHP
+        run: find wordpress-lab -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Download official current WordPress and copy the plugin
+        shell: bash
+        run: |
+          set -euo pipefail
+          lab_directory="$(dirname "$WP_ROOT")"
+          mkdir -p "$lab_directory" "$WP_LAB_ARTIFACTS"
+          curl --fail --location --retry 3 --connect-timeout 20 --max-time 180 https://wordpress.org/latest.tar.gz --output "$lab_directory/wordpress.tar.gz"
+          tar -xzf "$lab_directory/wordpress.tar.gz" -C "$lab_directory"
+          echo "WP_LAB_DOWNLOAD_SHA256=$(sha256sum "$lab_directory/wordpress.tar.gz" | cut -d ' ' -f 1)" >> "$GITHUB_ENV"
+          cp -R wordpress-lab/reference-cards "$WP_ROOT/wp-content/plugins/reference-cards"
+      - name: Install the disposable real WordPress database
+        run: php wordpress-lab/tests/bootstrap-wordpress.php
+      - name: Run actual WordPress and MySQL functional checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          php wordpress-lab/tests/integration.php | tee "$WP_LAB_ARTIFACTS/integration.log"
+          cat "$WP_LAB_ARTIFACTS/integration-results.json" >> "$GITHUB_STEP_SUMMARY"
+      - name: Package installable plugin ZIP
+        run: python3 wordpress-lab/scripts/package.py --output "$WP_LAB_ARTIFACTS/reference-cards-1.0.0.zip"
+      - name: Preserve version report, render snapshot, and plugin ZIP
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wordpress-lab-${{ github.run_id }}
+          path: ${{ env.WP_LAB_ARTIFACTS }}
+          if-no-files-found: error
+          retention-days: 30
