@@ -38,7 +38,7 @@ jobs:
       WP_LAB_DB_USER: root
       WP_LAB_DB_PASSWORD: wordpress_lab_ci
       WP_LAB_DB_HOST: 127.0.0.1:3306
-      WP_LAB_ARTIFACTS: ${{ github.workspace }}/.wordpress-lab-artifacts
+      WP_LAB_ARTIFACTS: ${{ github.workspace }}/wordpress-lab-artifacts
     steps:
       - uses: actions/checkout@v4
       - name: Configure actual PHP runtime
