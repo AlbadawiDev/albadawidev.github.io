@@ -1,0 +1,129 @@
+{
+    "generated_at_utc": "2026-10-12T04:52:05+00:00",
+    "wordpress_version": "7.1.3",
+    "php_version": "8.3.35",
+    "mysql_version": "8.4.11",
+    "wordpress_download_sha256": "d2a09acb6a15e3b9c471d72557753c266d6f41a79ed19bfe04cbfe49e283b2a5",
+    "fixture_type": "synthetic",
+    "checks_total": 29,
+    "checks_passed": 29,
+    "checks_failed": 0,
+    "checks": [
+        {
+            "name": "Actual WordPress core and database are loaded",
+            "status": "passed"
+        },
+        {
+            "name": "Plugin activation survives a fresh PHP bootstrap",
+            "status": "passed"
+        },
+        {
+            "name": "Shortcode registers on the init lifecycle",
+            "status": "passed"
+        },
+        {
+            "name": "Stylesheet is enqueued through the frontend lifecycle",
+            "status": "passed"
+        },
+        {
+            "name": "Default count returns three latest published posts",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input 1 renders 1 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input 2 renders 2 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input 0 renders 1 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input -99 renders 1 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input 999999 renders 12 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input abc renders 3 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Bounded count input 2.5 renders 3 cards",
+            "status": "passed"
+        },
+        {
+            "name": "Unknown attributes do not alter the selection",
+            "status": "passed"
+        },
+        {
+            "name": "Category slug selects the expected real database rows",
+            "status": "passed"
+        },
+        {
+            "name": "A second category excludes the first category",
+            "status": "passed"
+        },
+        {
+            "name": "Missing category has a readable empty state",
+            "status": "passed"
+        },
+        {
+            "name": "An invalid nonempty category fails closed",
+            "status": "passed"
+        },
+        {
+            "name": "Draft, private, protected, scheduled and page content are excluded",
+            "status": "passed"
+        },
+        {
+            "name": "Public selection remains public for a logged-in administrator",
+            "status": "passed"
+        },
+        {
+            "name": "Query has a hard limit and skips pagination totals",
+            "status": "passed"
+        },
+        {
+            "name": "Sticky posts do not override newest-first order",
+            "status": "passed"
+        },
+        {
+            "name": "Shortcode returns its markup without echoing",
+            "status": "passed"
+        },
+        {
+            "name": "The surrounding main Loop is preserved",
+            "status": "passed"
+        },
+        {
+            "name": "A nested Loop is preserved and WordPress can reset to the main Loop",
+            "status": "passed"
+        },
+        {
+            "name": "Query exceptions render a safe error state and preserve the Loop",
+            "status": "passed"
+        },
+        {
+            "name": "Untrusted title and excerpt output cannot introduce active HTML",
+            "status": "passed"
+        },
+        {
+            "name": "Filtered javascript URLs are rejected by WordPress URL escaping",
+            "status": "passed"
+        },
+        {
+            "name": "Empty titles receive a descriptive accessible link label",
+            "status": "passed"
+        },
+        {
+            "name": "Cards use named links and machine-readable dates",
+            "status": "passed"
+        }
+    ]
+}
