@@ -28,3 +28,12 @@ GitHub Pages uses the repository's configured publishing source. The reviewed po
 [WordPress case study](wordpress.html) separates the verified First Cognition paid task from the new assisted portfolio lab. Client code and screenshots are not published. The lab source, setup and real WordPress integration checks are under [wordpress-lab](wordpress-lab/README.md). New lab functionality is a portfolio demonstration, not a claimed client delivery or employment record.
 
 The public profile keeps Spanish native, English B1 and degree-in-progress status. Project improvements assisted by coding tools should be reviewed and understood before interview claims.
+
+## Technical blog
+
+[Technical notes](blog.html) contains two original assisted learning walkthroughs published as personal portfolio material on 13 October 2026:
+
+- [A bounded WordPress shortcode with escaped output](blog-wordpress-shortcode.html)
+- [CSV imports that roll back and retry safely](blog-casepilot-csv.html)
+
+Both posts link to implementation source, primary documentation, recorded automated checks and reproduction commands. They do not claim a new client engagement, production deployment or paid article assignment. The new CSV UI has no new verified browser walkthrough. Editorial and coding assistance are disclosed on the pages.

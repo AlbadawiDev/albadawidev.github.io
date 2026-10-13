@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="CasePilot uses preview validation, normalized hashes, one SQLite transaction and persistent receipts to make bounded CSV imports safe to retry."><title>CSV imports that roll back and retry safely · Daniel Al Badawi</title><link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><style>.article-content pre{padding:20px;background:#17282e;color:#e8f7ed;border-radius:9px;overflow-x:auto;font-size:13px;line-height:1.6;letter-spacing:0}.article-content code{font-family:Consolas,monospace}.article-content p code,.article-content li code{background:#e7eee3;padding:2px 5px;border-radius:3px;font-size:.9em}.article-content ul,.article-content ol{padding-left:24px;color:var(--muted)}.article-content li{margin-bottom:10px}.article-content .article-meta{font-size:13px;color:var(--muted)}.article-content pre:focus-visible{outline:3px solid #167759;outline-offset:3px}</style></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="navigation"><div class="wrap nav-inner"><a class="brand" href="index.html"><span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a><nav aria-label="Main navigation"><a href="index.html#paid-work">Paid work</a><a href="index.html#work">Projects</a><a href="blog.html">Blog</a><a class="contact-link" href="index.html#contact">Get in touch ↗</a></nav></div></header>
+<main id="main" class="wrap case-main"><a class="back-link" href="blog.html">← Technical blog</a><article class="article-content"><header class="case-header"><p class="eyebrow">Python · SQLite · CSV imports</p>
+<h1>CSV imports that roll back and retry safely</h1>
+<p class="lead">How a small local support application avoids partial imports and repeat batches after a network failure.</p>
+<p class="article-meta">Daniel Al Badawi · <time datetime="2026-10-13">13 October 2026</time> · Personal portfolio notes</p>
+</header>
+<div class="case-body"><section class="case-section"><h2>Treat an import as one operation</h2>
+<p>A CSV importer can look simple until a request fails halfway through. If it creates the first ticket and then rejects the second, the user sees an error but the database already contains a partial result. Retrying can then create another copy. CasePilot addresses both problems with separate preview and commit endpoints, one database transaction and a persistent batch receipt.</p>
+<p>CasePilot is a local Python, SQLite and JavaScript portfolio application. This import extension uses synthetic support requests. It is not a production client deployment. The design is intentionally bounded: administrators can import at most fifty rows and 24 KiB of UTF-8 CSV inside the existing JSON request limit.</p>
+</section>
+<section class="case-section"><h2>Validate before writing</h2>
+<p>The preview parses CSV with Python's <code>csv.reader()</code>, so quoted commas and multiline fields remain intact. The header must contain five known fields exactly once each. Rows use the same text-length, category and priority rules as manual ticket creation. Every invalid field gets line-specific feedback, and preview creates no tickets.</p>
+<p>Preview returns validated rows and a content hash when there are no errors. Commit parses and validates the submitted text again. It then compares the new hash with the preview hash. Editing the input after preview produces a conflict instead of importing content that the user has not reviewed. Both endpoints require an administrator session and CSRF validation.</p>
+</section>
+<section class="case-section"><h2>Hash validated meaning, not file formatting</h2>
+<p>A raw file hash would treat a byte-order mark, reordered columns or different line endings as a new batch. This importer first maps each valid row to the fixed field names and trims surrounding cell spaces. It serializes that normalized data with stable JSON settings, then calculates SHA-256.</p>
+<pre tabindex="0" aria-label="Python example"><code>canonical = [{key: row[key] for key in IMPORT_FIELDS} for row in rows]
+digest = hashlib.sha256(
+    json.dumps(canonical, ensure_ascii=False, sort_keys=True,
+               separators=(&quot;,&quot;, &quot;:&quot;)).encode(&quot;utf-8&quot;)
+).hexdigest()</code></pre>
+<p>That hash is a retry key, not a signature or proof of authorship. Row order still matters. Changing a ticket's content creates a different batch. The feature prevents repeat submission of the same normalized batch, rather than deduplicating individual tickets across every import.</p>
+</section>
+<section class="case-section"><h2>Lock before checking the receipt</h2>
+<p>Commit starts <code>BEGIN IMMEDIATE</code> before reading the batch receipt. SQLite reserves the write transaction early, so concurrent requests cannot both inspect an absent receipt and create the batch. The receipt's content hash is also its primary key.</p>
+<p>Inside that transaction, an existing receipt returns its original ticket IDs. Otherwise, the importer writes all tickets, their audit events and the receipt together. Each new ticket starts open and unassigned. The Python connection context commits on successful exit and rolls back on an exception. A database failure therefore leaves no partial tickets, audit trail or receipt.</p>
+<p>The receipt lives in SQLite rather than process memory. Restarting the application does not erase retry protection. A lost network response can be retried with the same validated text and hash.</p>
+</section>
+<section class="case-section"><h2>Verify the failure cases</h2>
+<p>The source includes 29 HTTP integration tests and 15 frontend tests. Import regressions force an error on the second write, submit two concurrent commits, restart the server and reorder CSV headers. They verify rollback and identical ticket IDs on retry. Frontend tests also exercise stale previews and preservation of the retry hash after a network failure.</p>
+<pre tabindex="0" aria-label="Shell example"><code>python -W error::ResourceWarning -m unittest discover -s tests -v
+node --test tests/frontend.test.cjs</code></pre>
+<p>Run these commands from the pinned CasePilot checkout with Python 3.11 or newer and Node installed. The HTTP suite starts a disposable local server and temporary database. Test results concern these automated scenarios. The CSV extension has no new verified browser walkthrough or mobile screenshot, and the standard-library demo server still needs production deployment work.</p>
+</section>
+<section class="case-section"><h2>Source and references</h2>
+<ul><li><a href="casepilot.html">CasePilot case study</a></li><li><a href="https://github.com/AlbadawiDev/casepilot/tree/6850561b442ac87926e0d81cbbbabdc502557a5c">Pinned implementation and tests</a></li><li><a href="https://github.com/AlbadawiDev/casepilot/blob/6850561b442ac87926e0d81cbbbabdc502557a5c/docs/VERIFICATION.md">Verification notes and limits</a></li><li><a href="https://github.com/AlbadawiDev/casepilot/actions/runs/38205177344">Passing pull-request CI matrix</a></li><li><a href="https://docs.python.org/3.11/library/csv.html">Python CSV reader reference</a></li><li><a href="https://docs.python.org/3.11/library/sqlite3.html#how-to-use-the-connection-context-manager">Python SQLite connection context</a></li><li><a href="https://sqlite.org/lang_transaction.html">SQLite transaction semantics</a></li></ul></section>
+<section class="case-section"><h2>About these notes</h2>
+<p class="article-meta">Personal portfolio notes, prepared with coding and editorial assistance. Source code and recorded tests support each walkthrough.</p>
+</section>
+</div></article><div class="case-bottom"><a class="button secondary" href="blog.html">More technical notes ↗</a><a class="text-link" href="index.html#contact">Discuss a scoped task ↗</a></div></main>
+<footer class="wrap footer"><span>© 2026 Daniel Al Badawi</span><span>Code, checks and project limits.</span><a href="https://github.com/AlbadawiDev">GitHub ↗</a></footer>
+</body></html>
