@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A reproducible WordPress article-card lab: explicit post selection, contextual escaping, Loop preservation and 29 real integration checks."><title>A bounded WordPress shortcode with escaped output · Daniel Al Badawi</title><link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><style>.article-content pre{padding:20px;background:#17282e;color:#e8f7ed;border-radius:9px;overflow-x:auto;font-size:13px;line-height:1.6;letter-spacing:0}.article-content code{font-family:Consolas,monospace}.article-content p code,.article-content li code{background:#e7eee3;padding:2px 5px;border-radius:3px;font-size:.9em}.article-content ul,.article-content ol{padding-left:24px;color:var(--muted)}.article-content li{margin-bottom:10px}.article-content .article-meta{font-size:13px;color:var(--muted)}.article-content pre:focus-visible{outline:3px solid #167759;outline-offset:3px}</style></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="navigation"><div class="wrap nav-inner"><a class="brand" href="index.html"><span class="monogram" aria-hidden="true">DA</span>Daniel Al Badawi</a><nav aria-label="Main navigation"><a href="index.html#paid-work">Paid work</a><a href="index.html#work">Projects</a><a href="blog.html">Blog</a><a class="contact-link" href="index.html#contact">Get in touch ↗</a></nav></div></header>
+<main id="main" class="wrap case-main"><a class="back-link" href="blog.html">← Technical blog</a><article class="article-content"><header class="case-header"><p class="eyebrow">WordPress · PHP · Functional tests</p>
+<h1>A bounded WordPress shortcode with escaped output</h1>
+<p class="lead">A short walkthrough of the Reference Cards portfolio lab, from query limits to real WordPress integration checks.</p>
+<p class="article-meta">Daniel Al Badawi · <time datetime="2026-10-13">13 October 2026</time> · Personal portfolio notes</p>
+</header>
+<div class="case-body"><section class="case-section"><h2>Keep the feature small</h2>
+<p>A recent portfolio extension is Reference Cards, a small WordPress plugin that displays published articles through a shortcode. The goal is a reviewable feature: a title, a date, a short excerpt and a link. No external API, page builder or JavaScript is needed. Keeping this scope small makes its behavior easier to explain and test.</p>
+<p>The shortcode accepts a card count and a category slug. The default is three cards. Integer input is limited to one through twelve, and non-integer input uses the default. A nonempty category that becomes an empty slug returns an empty state instead of selecting every category. This is a personal lab with synthetic content, separate from the private client plugin summarized in the portfolio.</p>
+<pre tabindex="0" aria-label="WordPress shortcode example"><code>[reference_cards count=&quot;3&quot; category=&quot;guides&quot;]</code></pre>
+</section>
+<section class="case-section"><h2>Select public content explicitly</h2>
+<p>The query specifies the post type, publication status and password rule. That matters even when the visitor is a signed-in administrator. It should still render the same public selection. The lab also disables sticky-post promotion and pagination totals, because a small card list does not need either behavior.</p>
+<pre tabindex="0" aria-label="PHP example"><code>$args = array(
+    &#x27;post_type&#x27;           =&gt; &#x27;post&#x27;,
+    &#x27;post_status&#x27;         =&gt; &#x27;publish&#x27;,
+    &#x27;has_password&#x27;        =&gt; false,
+    &#x27;posts_per_page&#x27;      =&gt; card_limit( $attributes[&#x27;count&#x27;] ),
+    &#x27;no_found_rows&#x27;       =&gt; true,
+    &#x27;ignore_sticky_posts&#x27; =&gt; true,
+    &#x27;orderby&#x27;             =&gt; array( &#x27;date&#x27; =&gt; &#x27;DESC&#x27;, &#x27;ID&#x27; =&gt; &#x27;DESC&#x27; ),
+);</code></pre>
+<p>The renderer iterates over the returned post objects and passes each object to template functions. It never calls <code>the_post()</code>. This avoids changing the surrounding main or nested Loop. A conventional secondary Loop that calls <code>the_post()</code> needs the appropriate reset afterward, as the WordPress reference explains.</p>
+</section>
+<section class="case-section"><h2>Escape at the output boundary</h2>
+<p>Content remains untrusted when it comes from the database. A title can contain markup, and a filter can change a permalink. The renderer uses <code>esc_html()</code> for text, <code>esc_url()</code> for links and <code>esc_attr()</code> for date attributes. These functions address different output contexts. Category normalization does not replace output escaping.</p>
+<pre tabindex="0" aria-label="PHP example"><code>$html .= &#x27;&lt;a href=&quot;&#x27; . esc_url( get_permalink( $article ) ) . &#x27;&quot;&gt;&#x27;
+    . esc_html( $title ) . &#x27;&lt;/a&gt;&#x27;;</code></pre>
+<p>Excerpts are stripped to plain text, shortened and then escaped. Missing titles receive a descriptive fallback. If the query raises a controlled error, the visitor gets a generic unavailable message. Paths, SQL and exception details stay out of the page.</p>
+</section>
+<section class="case-section"><h2>Test through real WordPress</h2>
+<p>The verified run completed 29 functional checks on 12 October 2026 using WordPress 7.1.3, PHP 8.3.35 and MySQL 8.4.11. These are the recorded versions for that run, not a claim about every supported installation. The workflow installs disposable WordPress, activates the plugin and runs a fresh PHP process against real database fixtures.</p>
+<p>Fixtures include published posts, drafts, private content, a password-protected post, a future post and another category. Assertions check visibility, ordering, count limits, Loop preservation, empty states and adversarial output. The <a href="assets/wordpress-lab-verification.json">exact report</a> lists every result. The <a href="https://github.com/AlbadawiDev/albadawidev.github.io/actions/runs/38205476117">completed CI run</a> retains the installable ZIP and actual rendered HTML.</p>
+</section>
+<section class="case-section"><h2>Reproduce and inspect</h2>
+<p>Clone the portfolio repository and build the plugin archive with the command below. Install it in a disposable WordPress site, publish sample articles in a <code>guides</code> category and add the shortcode to a page. The lab README includes the full isolated database setup for the integration suite.</p>
+<pre tabindex="0" aria-label="Shell example"><code>python3 wordpress-lab/scripts/package.py --output /tmp/reference-cards-1.0.0.zip</code></pre>
+<p>Do not run the fixture installer against an existing site. It creates and removes sample content in the isolated database. Automated HTML checks also do not establish visual accessibility or every theme combination. Keyboard use, narrow layouts and assistive technology need their separate manual checklist.</p>
+</section>
+<section class="case-section"><h2>Source and references</h2>
+<ul><li><a href="wordpress.html">Reference Cards case study and download</a></li><li><a href="https://github.com/AlbadawiDev/albadawidev.github.io/tree/4c8007dbd39d6d9efdd893957626e3a176f6831e/wordpress-lab">Pinned lab source and reproduction README</a></li><li><a href="https://developer.wordpress.org/reference/classes/wp_query/">WordPress WP_Query reference</a></li><li><a href="https://developer.wordpress.org/apis/security/escaping/">WordPress output escaping</a></li><li><a href="https://developer.wordpress.org/apis/shortcode/">WordPress Shortcode API</a></li></ul></section>
+<section class="case-section"><h2>About these notes</h2>
+<p class="article-meta">Personal portfolio notes, prepared with coding and editorial assistance. Source code and recorded tests support each walkthrough.</p>
+</section>
+</div></article><div class="case-bottom"><a class="button secondary" href="blog.html">More technical notes ↗</a><a class="text-link" href="index.html#contact">Discuss a scoped task ↗</a></div></main>
+<footer class="wrap footer"><span>© 2026 Daniel Al Badawi</span><span>Code, checks and project limits.</span><a href="https://github.com/AlbadawiDev">GitHub ↗</a></footer>
+</body></html>
