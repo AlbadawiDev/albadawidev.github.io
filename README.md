@@ -8,10 +8,10 @@ From this directory, run `python -m http.server 8090 --bind 127.0.0.1` and open 
 
 ## Curriculum vitae
 
-Download the current CV for WordPress, web support and junior QA opportunities:
+Download the current CV for junior software development, web support and functional QA opportunities:
 
-- [English CV (PDF)](assets/cv/Daniel_Albadawi_CV_EN_WordPress_QA_2026-10-12.pdf)
-- [CV en español (PDF)](assets/cv/Daniel_Albadawi_CV_ES_WordPress_QA_2026-10-12.pdf)
+- [English CV (PDF)](assets/cv/Daniel_Albadawi_CV_EN_2026-10-20.pdf)
+- [CV en español (PDF)](assets/cv/Daniel_Albadawi_CV_ES_2026-10-20.pdf)
 
 ## Verification
 
@@ -37,3 +37,7 @@ The public profile keeps Spanish native, English B1 and degree-in-progress statu
 - [CSV imports that roll back and retry safely](blog-casepilot-csv.html)
 
 Both posts link to implementation source, primary documentation, recorded automated checks and reproduction commands. They do not claim a new client engagement, production deployment or paid article assignment. The new CSV UI has no new verified browser walkthrough. Editorial and coding assistance are disclosed on the pages.
+
+## Profile refresh - 20 October 2026
+
+The bilingual CVs include the documented English Level III (CEFR B1) course: American English Center, 72 hours, 25 July 2026. This is course completion, not a claim of advanced fluency or an independent standardized exam. The public certificate scan and government identifier are not published. Academic and personal work remains separate from paid assignments.
